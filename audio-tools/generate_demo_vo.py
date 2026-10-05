@@ -19,6 +19,8 @@ Generated lines are skipped on re-runs unless --force is given, so a failed run 
 
 No API access? Generate each language yourself on elevenlabs.io (paste the text from voiceover/demo/<lang>.txt,
 one paragraph per line) and split the download with:  --from-audio hi=/path/to/hindi.mp3
+A recording kept as voiceover/demo/<lang>-full.mp3 with cut times in voiceover/demo/<lang>-cuts.json (id, start,
+end in seconds) is used instead of per-line MP3s; --convert-only re-cuts it.
 """
 import argparse
 import json
@@ -171,14 +173,35 @@ def tts(voice: str, model: str, lang: str, text: str, prev: str | None, nxt: str
     raise last
 
 
-def finish(src: Path, dst: Path) -> float:
-    """Trim silence, match loudness, write 48 kHz mono WAV. Returns seconds."""
+def finish(src: Path, dst: Path, gain_db: float | None = None, span: tuple[float, float] | None = None) -> float:
+    """Trim silence, match loudness, write 48 kHz mono WAV. Returns seconds.
+
+    With gain_db every line of a language gets the same gain (keeps the narrator's natural dynamics); without it
+    each line is loudness-normalised on its own. span cuts [start, end] seconds out of a longer recording.
+    """
     dst.parent.mkdir(parents=True, exist_ok=True)
     trim = 'silenceremove=start_periods=1:start_threshold=-48dB:start_silence=0.05'
-    af = f'{trim},areverse,{trim},areverse,loudnorm=I=-19:TP=-2:LRA=9,aresample=48000'
-    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', str(src), '-af', af, '-ac', '1', '-c:a', 'pcm_s16le', str(dst)], check=True)
+    level = f'volume={gain_db:.2f}dB' if gain_db is not None else 'loudnorm=I=-19:TP=-2:LRA=9'
+    af = f'{trim},areverse,{trim},areverse,{level},afade=t=in:d=0.01,areverse,afade=t=in:d=0.03,areverse,aresample=48000'
+    cut = ['-ss', f'{span[0]:.3f}', '-to', f'{span[1]:.3f}'] if span else []
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', *cut, '-i', str(src), '-af', af, '-ac', '1', '-c:a', 'pcm_s16le', str(dst)], check=True)
     out = subprocess.run(['ffprobe', '-v', 'error', '-show_entries', 'format=duration', '-of', 'csv=p=0', str(dst)], capture_output=True, text=True)
     return float(out.stdout.strip())
+
+
+def integrated_lufs(path: Path) -> float:
+    out = subprocess.run(['ffmpeg', '-hide_banner', '-i', str(path), '-af', 'loudnorm=print_format=json', '-f', 'null', '-'], capture_output=True, text=True).stderr
+    return float(json.loads(out[out.rindex('{'):])['input_i'])
+
+
+def extract_cuts(lang: str):
+    """Cut every line out of voiceover/demo/<lang>-full.mp3 at the times in <lang>-cuts.json (one gain per language)."""
+    full = RAW / f'{lang}-full.mp3'
+    cuts = json.loads((RAW / f'{lang}-cuts.json').read_text())
+    gain = -19.0 - integrated_lufs(full)
+    for c in cuts:
+        secs = finish(full, OUT / lang / f"{c['id']}.wav", gain_db=gain, span=(c['start'], c['end']))
+        print(f"  {lang}/{c['id']}: {secs:.2f}s")
 
 
 def write_text_files():
@@ -243,6 +266,9 @@ def main():
 
     if a.convert_only:
         for lang in a.lang:
+            if (RAW / f'{lang}-cuts.json').exists():
+                extract_cuts(lang)
+                continue
             for s in SCRIPT['steps']:
                 mp3 = RAW / lang / f'{s["id"]}.mp3'
                 if mp3.exists():
