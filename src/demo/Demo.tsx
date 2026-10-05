@@ -46,7 +46,7 @@ const Laptop: React.FC<{T: Timing}> = ({T}) => {
   const a = T.start('s02');
   const b = T.start('s03');
   const enter = tween(frame, [a, a + 22], [0, 1], easeOut);
-  const exit = tween(frame, [b - 4, b + 14], [0, 1], easeInOut);
+  const exit = tween(frame, [b - 14, b + 2], [0, 1], easeInOut);
   if (frame < a - 1 || exit >= 1) return null;
   const k = 0.585;
   const w = BROWSER_W * k;

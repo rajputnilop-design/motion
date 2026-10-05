@@ -19,3 +19,4 @@ public/audio/demo/music-*.wav
 out/demo/raw-*.mp4
 out/demo/mix-*.wav
 out/demo/preview-*.mp4
+out/demo/*PREVIEW*.mp4
