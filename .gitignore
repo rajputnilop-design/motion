@@ -4,4 +4,10 @@ node_modules/
 __pycache__/
 out/stills/
 out/raw.mp4
+out/raw-4k.mp4
+out/mix-*.wav
+out/share/
+out/AIShikshaMitra-4K.mp4
+out/AIShikshaMitra-Marathi.mp4
+out/AIShikshaMitra-Hindi.mp4
 out/AIShikshaMitra-share.mp4

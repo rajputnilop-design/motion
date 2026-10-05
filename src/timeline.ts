@@ -1,4 +1,5 @@
 import timeline from './timeline.json';
+import localized from './voiceover.json';
 
 export type SceneId = (typeof timeline.scenes)[number]['id'];
 
@@ -26,11 +27,23 @@ export const sceneDuration = (id: SceneId): number => {
 
 export const TOTAL_FRAMES = SCENES.reduce((sum, s) => sum + s.duration, 0) - TRANSITION * (SCENES.length - 1);
 
-export const voiceOvers = SCENES.flatMap((s) =>
-  'vo' in s && s.vo
-    ? [{file: s.vo.file, from: sceneStart(s.id) + s.vo.at, frames: Math.ceil(s.vo.seconds * FPS)}]
-    : [],
+export type VoLang = 'en' | 'mr' | 'hi';
+export type VoClip = {file: string; from: number; frames: number};
+
+// English lines are placed per scene in timeline.json; Marathi and Hindi placements are written to
+// voiceover.json by audio-tools/generate_vo_indic.py (the last line is split so it lands on the end titles).
+const englishVoiceOvers: VoClip[] = SCENES.flatMap((s) =>
+  'vo' in s && s.vo ? [{file: s.vo.file, from: sceneStart(s.id) + s.vo.at, frames: Math.ceil(s.vo.seconds * FPS)}] : [],
 );
+
+export const voiceOversFor = (lang: VoLang): VoClip[] =>
+  lang === 'en'
+    ? englishVoiceOvers
+    : (localized[lang] as {file: string; scene: string; at: number; seconds: number}[]).map((v) => ({
+        file: `${lang}/${v.file}`,
+        from: sceneStart(v.scene as SceneId) + v.at,
+        frames: Math.ceil(v.seconds * FPS),
+      }));
 
 export const cueFrame = (cue: keyof typeof timeline.cues): number => {
   const c = timeline.cues[cue];

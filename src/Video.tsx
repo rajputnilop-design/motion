@@ -13,10 +13,10 @@ import {Scene07Videos} from './scenes/Scene07Videos';
 import {Scene08All} from './scenes/Scene08All';
 import {Scene09Teachers} from './scenes/Scene09Teachers';
 import {Scene10Cta} from './scenes/Scene10Cta';
-import {SceneId, SCENES, TOTAL_FRAMES, TRANSITION, voiceOvers} from './timeline';
+import {SceneId, SCENES, TOTAL_FRAMES, TRANSITION, VoClip, VoLang, voiceOversFor} from './timeline';
 import {zoomFade} from './transitions';
 
-export const videoSchemaDefaults = {voiceover: true, music: true};
+export const videoSchemaDefaults: {voiceover: boolean; music: boolean; voLang: VoLang} = {voiceover: true, music: true, voLang: 'en'};
 type Props = typeof videoSchemaDefaults;
 
 const SCENE_COMPONENTS: Record<SceneId, React.FC> = {
@@ -35,7 +35,7 @@ const SCENE_COMPONENTS: Record<SceneId, React.FC> = {
 const MUSIC_VOLUME = 0.42;
 const DUCKED = 0.22;
 
-const musicVolume = (f: number): number => {
+const musicVolume = (f: number, voiceOvers: VoClip[]): number => {
   // Duck the music under each voice-over line, with short ramps either side.
   let v = MUSIC_VOLUME;
   for (const vo of voiceOvers) {
@@ -57,7 +57,8 @@ const EndFade: React.FC = () => {
   return <AbsoluteFill style={{backgroundColor: '#000', opacity}} />;
 };
 
-export const AIShikshaMitraVideo: React.FC<Props> = ({voiceover, music}) => {
+export const AIShikshaMitraVideo: React.FC<Props> = ({voiceover, music, voLang}) => {
+  const voiceOvers = voiceOversFor(voLang);
   return (
     <AbsoluteFill style={{backgroundColor: '#060920'}}>
       <Background />
@@ -81,7 +82,7 @@ export const AIShikshaMitraVideo: React.FC<Props> = ({voiceover, music}) => {
           return items;
         })}
       </TransitionSeries>
-      {music ? <Audio src={staticFile('audio/music.wav')} volume={musicVolume} /> : null}
+      {music ? <Audio src={staticFile('audio/music.wav')} volume={(f) => musicVolume(f, voiceover ? voiceOvers : [])} /> : null}
       {voiceover
         ? voiceOvers.map((vo) => (
             <Sequence key={vo.file} from={vo.from} layout="none" name={vo.file}>

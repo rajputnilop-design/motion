@@ -1,0 +1,150 @@
+{
+  "mr": [
+    {
+      "file": "vo02",
+      "scene": "intro",
+      "at": 18,
+      "seconds": 5.549
+    },
+    {
+      "file": "vo03",
+      "scene": "lesson",
+      "at": 15,
+      "seconds": 4.52
+    },
+    {
+      "file": "vo04",
+      "scene": "papers",
+      "at": 15,
+      "seconds": 6.845
+    },
+    {
+      "file": "vo05",
+      "scene": "visuals",
+      "at": 18,
+      "seconds": 4.36
+    },
+    {
+      "file": "vo06",
+      "scene": "slides",
+      "at": 15,
+      "seconds": 4.63
+    },
+    {
+      "file": "vo07",
+      "scene": "videos",
+      "at": 15,
+      "seconds": 6.667
+    },
+    {
+      "file": "vo08",
+      "scene": "all",
+      "at": 15,
+      "seconds": 6.31
+    },
+    {
+      "file": "vo09",
+      "scene": "teachers",
+      "at": 26,
+      "seconds": 5.599
+    },
+    {
+      "file": "vo10a",
+      "scene": "cta",
+      "at": 18,
+      "seconds": 1.325
+    },
+    {
+      "file": "vo10b",
+      "scene": "cta",
+      "at": 66,
+      "seconds": 1.148
+    },
+    {
+      "file": "vo10c",
+      "scene": "cta",
+      "at": 105,
+      "seconds": 1.098
+    },
+    {
+      "file": "vo10d",
+      "scene": "cta",
+      "at": 142,
+      "seconds": 1.267
+    }
+  ],
+  "hi": [
+    {
+      "file": "vo02",
+      "scene": "intro",
+      "at": 18,
+      "seconds": 4.48
+    },
+    {
+      "file": "vo03",
+      "scene": "lesson",
+      "at": 15,
+      "seconds": 2.944
+    },
+    {
+      "file": "vo04",
+      "scene": "papers",
+      "at": 15,
+      "seconds": 4.5
+    },
+    {
+      "file": "vo05",
+      "scene": "visuals",
+      "at": 18,
+      "seconds": 3.223
+    },
+    {
+      "file": "vo06",
+      "scene": "slides",
+      "at": 15,
+      "seconds": 4.071
+    },
+    {
+      "file": "vo07",
+      "scene": "videos",
+      "at": 15,
+      "seconds": 5.468
+    },
+    {
+      "file": "vo08",
+      "scene": "all",
+      "at": 15,
+      "seconds": 4.55
+    },
+    {
+      "file": "vo09",
+      "scene": "teachers",
+      "at": 26,
+      "seconds": 5.278
+    },
+    {
+      "file": "vo10a",
+      "scene": "cta",
+      "at": 18,
+      "seconds": 1.257
+    },
+    {
+      "file": "vo10b",
+      "scene": "cta",
+      "at": 66,
+      "seconds": 1.388
+    },
+    {
+      "file": "vo10c",
+      "scene": "cta",
+      "at": 112,
+      "seconds": 0.912
+    },
+    {
+      "file": "vo10d",
+      "scene": "cta",
+      "at": 144,
+      "seconds": 1.304
+    }
+  ]
+}
