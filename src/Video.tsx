@@ -2,7 +2,7 @@ import {linearTiming, TransitionSeries} from '@remotion/transitions';
 import React from 'react';
 import {AbsoluteFill, Audio, interpolate, Sequence, staticFile, useCurrentFrame} from 'remotion';
 import {easeInOut} from './anim';
-import {Background} from './components/Background';
+import {Background, Grain} from './components/Background';
 import {Scene01Problem} from './scenes/Scene01Problem';
 import {Scene02Intro} from './scenes/Scene02Intro';
 import {Scene03Lesson} from './scenes/Scene03Lesson';
@@ -89,6 +89,7 @@ export const AIShikshaMitraVideo: React.FC<Props> = ({voiceover, music}) => {
             </Sequence>
           ))
         : null}
+      <Grain />
       <EndFade />
     </AbsoluteFill>
   );

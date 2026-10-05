@@ -3,7 +3,7 @@ import React from 'react';
 import {AbsoluteFill, random, useCurrentFrame, useVideoConfig} from 'remotion';
 import {easeIn, easeInOut, pop, tween} from '../anim';
 import {MaskWords, Sfx} from '../components/ui';
-import {C, FONT, gradientText, saffronGradient} from '../theme';
+import {C, SANS, SERIF} from '../theme';
 import timeline from '../timeline.json';
 
 const FREEZE = timeline.cues.freeze.at;
@@ -111,7 +111,7 @@ const DocCard: React.FC<{doc: Doc}> = ({doc}) => {
           borderRadius: 6,
           boxShadow: '0 18px 30px -10px rgba(0,0,0,0.5)',
           padding: 20,
-          fontFamily: FONT,
+          fontFamily: SANS,
           fontWeight: 600,
           fontSize: 24,
           lineHeight: 1.25,
@@ -131,7 +131,7 @@ const DocCard: React.FC<{doc: Doc}> = ({doc}) => {
         borderRadius: 14,
         overflow: 'hidden',
         boxShadow: '0 22px 40px -12px rgba(0,0,0,0.55)',
-        fontFamily: FONT,
+        fontFamily: SANS,
       }}
     >
       <div
@@ -187,7 +187,7 @@ export const Scene01Problem: React.FC = () => {
   const textOut = tween(realFrame, [SWEEP - 4, SWEEP + 12], [0, 1], easeIn);
 
   return (
-    <AbsoluteFill style={{fontFamily: FONT}}>
+    <AbsoluteFill style={{fontFamily: SANS}}>
       <AbsoluteFill
         style={{
           transform: `translate(${shakeX}px, ${shakeY}px) scale(${zoom * (1 - sweep * 0.08)})`,
@@ -204,15 +204,15 @@ export const Scene01Problem: React.FC = () => {
             width: 1580,
             height: 880,
             borderRadius: 22,
-            background: '#161C47',
-            border: '1.5px solid rgba(255,255,255,0.1)',
+            background: '#09090B',
+            border: '1px solid rgba(255,255,255,0.1)',
             boxShadow: '0 40px 90px -20px rgba(0,0,0,0.7)',
             overflow: 'hidden',
             opacity: tween(realFrame, [0, 10], [0, 1]),
             transform: `scale(${0.96 + 0.04 * pop(realFrame, fps, 0, 20)})`,
           }}
         >
-          <div style={{height: 58, background: '#0E1336', display: 'flex', alignItems: 'flex-end', padding: '0 14px', gap: 4}}>
+          <div style={{height: 58, background: '#1B1D23', display: 'flex', alignItems: 'flex-end', padding: '0 14px', gap: 4}}>
             <div style={{display: 'flex', gap: 8, alignSelf: 'center', marginRight: 14}}>
               {['#FF5F57', '#FEBC2E', '#28C840'].map((c) => (
                 <div key={c} style={{width: 14, height: 14, borderRadius: 7, background: c}} />
@@ -225,7 +225,7 @@ export const Scene01Problem: React.FC = () => {
                   width: tabWidth - 4,
                   height: 42,
                   borderRadius: '10px 10px 0 0',
-                  background: i === tabCount - 1 ? '#161C47' : '#1F2759',
+                  background: i === tabCount - 1 ? '#32333A' : '#26272C',
                   padding: '0 12px',
                   display: 'flex',
                   alignItems: 'center',
@@ -284,7 +284,7 @@ export const Scene01Problem: React.FC = () => {
           gap: 14,
           padding: '14px 26px',
           borderRadius: 999,
-          background: 'rgba(10, 15, 46, 0.85)',
+          background: 'rgba(22, 22, 23, 0.9)',
           border: '1.5px solid rgba(255,255,255,0.15)',
           color: C.white,
           fontWeight: 600,
@@ -293,7 +293,7 @@ export const Scene01Problem: React.FC = () => {
           filter: desat > 0 ? `grayscale(${desat})` : undefined,
         }}
       >
-        <Clock size={30} color={frozen ? C.slate400 : C.saffron} />
+        <Clock size={30} color={frozen ? C.slate400 : C.purpleLight} />
         {formatTime(minutes)}
       </div>
 
@@ -327,7 +327,7 @@ export const Scene01Problem: React.FC = () => {
       {/* Headline */}
       <AbsoluteFill
         style={{
-          background: 'radial-gradient(ellipse 900px 380px at 50% 50%, rgba(5, 8, 24, 0.9) 0%, rgba(5, 8, 24, 0.75) 45%, transparent 100%)',
+          background: 'radial-gradient(ellipse 900px 380px at 50% 50%, rgba(5, 5, 7, 0.92) 0%, rgba(5, 5, 7, 0.78) 45%, transparent 100%)',
           opacity: tween(realFrame, [6, 20], [0, 1]) * (1 - textOut),
         }}
       />
@@ -343,14 +343,13 @@ export const Scene01Problem: React.FC = () => {
         <MaskWords
           text="Teaching takes time."
           at={10}
-          style={{fontSize: 104, fontWeight: 800, color: C.white, letterSpacing: '-0.025em', justifyContent: 'center'}}
+          style={{fontFamily: SERIF, fontSize: 116, fontWeight: 600, color: C.white, letterSpacing: '-0.015em', justifyContent: 'center'}}
         />
         <MaskWords
           text="Creating everything takes even more."
           at={64}
           stagger={4}
-          style={{fontSize: 62, fontWeight: 700, marginTop: 18, letterSpacing: '-0.015em', justifyContent: 'center'}}
-          wordStyle={() => ({...gradientText(saffronGradient)})}
+          style={{fontFamily: SERIF, fontStyle: 'italic', fontSize: 66, fontWeight: 400, marginTop: 14, color: C.lavender, justifyContent: 'center'}}
         />
       </AbsoluteFill>
 

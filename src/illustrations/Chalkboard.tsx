@@ -2,7 +2,7 @@ import {ArrowRight} from 'lucide-react';
 import React from 'react';
 import {useCurrentFrame, useVideoConfig} from 'remotion';
 import {pop, tween} from '../anim';
-import {FONT} from '../theme';
+import {SANS as FONT} from '../theme';
 
 export const PLAYER_W = 1000;
 export const PLAYER_H = 562;

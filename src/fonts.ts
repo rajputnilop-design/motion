@@ -1,21 +1,28 @@
 import {loadFont} from '@remotion/fonts';
 import {continueRender, delayRender, staticFile} from 'remotion';
 
-const faces: {weight: string; file: string; family?: string}[] = [
-  {weight: '400', file: 'poppins-latin-400-normal.woff2'},
-  {weight: '500', file: 'poppins-latin-500-normal.woff2'},
-  {weight: '600', file: 'poppins-latin-600-normal.woff2'},
-  {weight: '700', file: 'poppins-latin-700-normal.woff2'},
-  {weight: '800', file: 'poppins-latin-800-normal.woff2'},
-  {weight: '700', file: 'noto-sans-devanagari-devanagari-700-normal.woff2', family: 'Noto Sans Devanagari'},
+const faces: {family: string; file: string; weight: string; style?: string}[] = [
+  ...['400', '500', '600', '700', '800'].map((w) => ({family: 'Inter', file: `inter-latin-${w}-normal.woff2`, weight: w})),
+  ...['400', '500', '600', '700', '800'].map((w) => ({
+    family: 'Playfair Display',
+    file: `playfair-display-latin-${w}-normal.woff2`,
+    weight: w,
+  })),
+  ...['400', '600', '700'].map((w) => ({
+    family: 'Playfair Display',
+    file: `playfair-display-latin-${w}-italic.woff2`,
+    weight: w,
+    style: 'italic',
+  })),
+  ...['400', '500', '600', '700'].map((w) => ({
+    family: 'Noto Sans Devanagari',
+    file: `noto-sans-devanagari-devanagari-${w}-normal.woff2`,
+    weight: w,
+  })),
 ];
 
 const handle = delayRender('Loading fonts');
-Promise.all(
-  faces.map((f) =>
-    loadFont({family: f.family ?? 'Poppins', url: staticFile(`fonts/${f.file}`), weight: f.weight}),
-  ),
-)
+Promise.all(faces.map((f) => loadFont({family: f.family, url: staticFile(`fonts/${f.file}`), weight: f.weight, style: f.style})))
   .then(() => continueRender(handle))
   .catch((err) => {
     console.error(err);

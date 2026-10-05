@@ -2,7 +2,7 @@ import {CircleCheck} from 'lucide-react';
 import React from 'react';
 import {random, useCurrentFrame} from 'remotion';
 import {tween} from '../anim';
-import {C, FONT} from '../theme';
+import {C, SANS as FONT} from '../theme';
 
 // Slides are designed at 900x506 and scaled down for thumbnails.
 export const SLIDE_W = 900;
@@ -80,7 +80,7 @@ export const TitleSlide: React.FC = () => {
         })}
       </svg>
       <div style={{position: 'absolute', left: 380, top: 150}}>
-        <div style={{display: 'inline-block', padding: '6px 16px', borderRadius: 999, background: 'rgba(255,153,51,0.18)', color: C.saffronLight, fontWeight: 600, fontSize: 18}}>
+        <div style={{display: 'inline-block', padding: '6px 16px', borderRadius: 999, background: 'rgba(255,153,51,0.18)', color: '#FFB65C', fontWeight: 600, fontSize: 18}}>
           Class 6 · Science
         </div>
         <div style={{fontSize: 66, fontWeight: 800, color: C.white, lineHeight: 1.05, marginTop: 16, letterSpacing: '-0.02em'}}>
@@ -118,7 +118,7 @@ export const SunSlide: React.FC = () => {
         <div style={{fontSize: 52, fontWeight: 800, color: C.ink, letterSpacing: '-0.02em'}}>Our Sun</div>
         {['A star at the centre of our Solar System', 'Gives Earth its light and heat', 'Sunlight reaches Earth in about 8 minutes'].map((b, i) => (
           <div key={b} style={{display: 'flex', gap: 14, marginTop: i ? 18 : 22, fontSize: 25, lineHeight: 1.35, fontWeight: 500, color: C.slate700}}>
-            <div style={{width: 12, height: 12, minWidth: 12, borderRadius: 6, background: C.saffron, marginTop: 12}} />
+            <div style={{width: 12, height: 12, minWidth: 12, borderRadius: 6, background: '#FF9933', marginTop: 12}} />
             {b}
           </div>
         ))}
@@ -139,7 +139,7 @@ export const PlanetsSlide: React.FC = () => {
         {PLANETS.map((p, i) => (
           <g key={p.name}>
             <Planet p={p} cx={xs[i] + 40} cy={290} scale={1.25} />
-            <text x={xs[i] + 40} y={385} textAnchor="middle" fontFamily="Poppins" fontWeight="600" fontSize="17" fill="#334155">
+            <text x={xs[i] + 40} y={385} textAnchor="middle" fontFamily="Inter" fontWeight="600" fontSize="17" fill="#334155">
               {p.name}
             </text>
           </g>

@@ -57,11 +57,11 @@ export const PhotosynthesisArt: React.FC = () => {
       ))}
       <path d="M 96 120 C 96 70 140 40 196 36 C 192 92 160 122 96 120 Z" fill="#4ADE80" stroke="#16A34A" strokeWidth="3" />
       <path d="M 100 116 C 130 96 160 70 188 42" stroke="#15803D" strokeWidth="3" fill="none" />
-      <text x="20" y="112" fontFamily="Poppins" fontWeight="700" fontSize="17" fill="#475569">
+      <text x="20" y="112" fontFamily="Inter" fontWeight="700" fontSize="17" fill="#475569">
         CO<tspan fontSize="11" dy="4">2</tspan>
       </text>
       <path d="M 58 108 L 86 104" stroke="#64748B" strokeWidth="3" strokeLinecap="round" />
-      <text x="196" y="124" fontFamily="Poppins" fontWeight="700" fontSize="17" fill="#0EA5E9">
+      <text x="196" y="124" fontFamily="Inter" fontWeight="700" fontSize="17" fill="#0EA5E9">
         O<tspan fontSize="11" dy="4">2</tspan>
       </text>
       <path d="M 170 116 L 192 116" stroke="#0EA5E9" strokeWidth="3" strokeLinecap="round" />
@@ -75,11 +75,11 @@ export const PythagorasArt: React.FC = () => (
     <g transform="translate(40 18)">
       <path d="M 0 90 L 72 90 L 0 36 Z" fill="#FDBA74" stroke="#EA580C" strokeWidth="3" strokeLinejoin="round" />
       <rect x="0" y="80" width="10" height="10" fill="none" stroke="#EA580C" strokeWidth="2" />
-      <text x="28" y="108" fontFamily="Poppins" fontWeight="700" fontSize="15" fill="#9A3412">b</text>
-      <text x="-14" y="68" fontFamily="Poppins" fontWeight="700" fontSize="15" fill="#9A3412">a</text>
-      <text x="40" y="58" fontFamily="Poppins" fontWeight="700" fontSize="15" fill="#9A3412">c</text>
+      <text x="28" y="108" fontFamily="Inter" fontWeight="700" fontSize="15" fill="#9A3412">b</text>
+      <text x="-14" y="68" fontFamily="Inter" fontWeight="700" fontSize="15" fill="#9A3412">a</text>
+      <text x="40" y="58" fontFamily="Inter" fontWeight="700" fontSize="15" fill="#9A3412">c</text>
     </g>
-    <text x="126" y="84" fontFamily="Poppins" fontWeight="700" fontSize="19" fill="#0F172A">
+    <text x="126" y="84" fontFamily="Inter" fontWeight="700" fontSize="19" fill="#0F172A">
       a² + b² = c²
     </text>
   </svg>

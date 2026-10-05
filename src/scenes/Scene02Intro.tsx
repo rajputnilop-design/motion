@@ -1,44 +1,47 @@
 import React from 'react';
 import {AbsoluteFill, random, useCurrentFrame, useVideoConfig} from 'remotion';
 import {easeInOut, pop, tween} from '../anim';
-import {HomeScreen} from '../components/HomeScreen';
-import {LogoMark, Wordmark} from '../components/Logo';
+import {AppShell} from '../components/AppShell';
+import {BROWSER_H, BROWSER_W, Browser} from '../components/Browser';
+import {ChatPage, ChatWelcome, Composer} from '../components/Chat';
+import {camAt, Device} from '../components/Device';
+import {LogoMark} from '../components/Logo';
 import {Phone} from '../components/Phone';
 import {Sfx} from '../components/ui';
-import {brandGradient, C, FONT, gradientText, saffronGradient} from '../theme';
+import {C, SANS, SERIF} from '../theme';
 import timeline from '../timeline.json';
 
 const REVEAL = timeline.cues.reveal.at;
-const MOVE = [44, 74] as const;
-const WORDMARK = 62;
-const PHONE_IN = 56;
-const HOME = 100;
+const WORD = 32;
+const TAG = 52;
+const SUB = 64;
+const MOVE: [number, number] = [90, 122];
+const BROWSER_IN = 98;
+const PHONE_IN = 116;
 
-const BurstParticles: React.FC<{at: number; cx: number; cy: number}> = ({at, cx, cy}) => {
+const Sparks: React.FC<{at: number}> = ({at}) => {
   const frame = useCurrentFrame();
-  const t = tween(frame, [at, at + 34], [0, 1]);
+  const t = tween(frame, [at, at + 40], [0, 1]);
   if (t <= 0 || t >= 1) return null;
   return (
     <>
-      {new Array(16).fill(0).map((_, i) => {
-        const angle = (i / 16) * Math.PI * 2 + random(`a${i}`) * 0.3;
-        const dist = 160 + random(`d${i}`) * 220;
-        const size = 10 + random(`s${i}`) * 16;
-        const x = cx + Math.cos(angle) * dist * t;
-        const y = cy + Math.sin(angle) * dist * t;
+      {new Array(22).fill(0).map((_, i) => {
+        const a = (i / 22) * Math.PI * 2 + random(`sa${i}`) * 0.4;
+        const d = 180 + random(`sd${i}`) * 300;
+        const s = 4 + random(`ss${i}`) * 7;
         return (
           <div
             key={i}
             style={{
               position: 'absolute',
-              left: x - size / 2,
-              top: y - size / 2,
-              width: size,
-              height: size,
+              left: 960 + Math.cos(a) * d * t - s / 2,
+              top: 380 + Math.sin(a) * d * t - s / 2,
+              width: s,
+              height: s,
               borderRadius: '50%',
-              background: i % 3 === 0 ? C.saffron : i % 3 === 1 ? '#A5B4FC' : C.white,
-              opacity: 1 - t,
-              transform: `scale(${1 - t * 0.6})`,
+              background: i % 3 === 0 ? C.aqua : i % 3 === 1 ? C.lavender : C.white,
+              opacity: (1 - t) * 0.9,
+              boxShadow: `0 0 10px ${i % 2 ? C.cyan : C.purpleLight}`,
             }}
           />
         );
@@ -50,161 +53,150 @@ const BurstParticles: React.FC<{at: number; cx: number; cy: number}> = ({at, cx,
 export const Scene02Intro: React.FC = () => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
-
-  // Logo: pops in at the centre, then glides to the left lock-up.
-  const logoPop = pop(frame, fps, REVEAL, 10, 120);
   const move = tween(frame, [MOVE[0], MOVE[1]], [0, 1], easeInOut);
-  const startC = {x: 960, y: 500, size: 260};
-  const endC = {x: 150 + 75, y: 330 + 75, size: 150};
-  const lx = startC.x + (endC.x - startC.x) * move;
-  const ly = startC.y + (endC.y - startC.y) * move;
-  const lsize = startC.size + (endC.size - startC.size) * move;
-  const open = tween(frame, [REVEAL + 4, REVEAL + 24], [0, 1]);
-  const sparkle = pop(frame, fps, REVEAL + 14, 8, 160);
+  const glow = tween(frame, [REVEAL, REVEAL + 45], [0, 1]);
 
-  const glow = tween(frame, [REVEAL, REVEAL + 40], [0, 1]);
-  const ring = tween(frame, [REVEAL + 2, REVEAL + 30], [0, 1]);
-
+  const cam = camAt(
+    frame,
+    [
+      {f: BROWSER_IN, cam: {look: [BROWSER_W / 2, BROWSER_H / 2], at: [1560, 600], scale: 0.56, ry: -40, rx: 4, opacity: 0}},
+      {f: BROWSER_IN + 30, cam: {look: [BROWSER_W / 2, BROWSER_H / 2], at: [1300, 540], scale: 0.66, ry: -17, rx: 3, opacity: 1}},
+      {f: 200, cam: {look: [BROWSER_W / 2, BROWSER_H / 2], at: [1285, 540], scale: 0.68, ry: -12, rx: 2, opacity: 1}},
+    ],
+    easeInOut,
+  );
   const phoneP = pop(frame, fps, PHONE_IN, 16, 90);
-  const splash = 1 - tween(frame, [HOME - 6, HOME + 4], [0, 1]);
 
   return (
-    <AbsoluteFill style={{fontFamily: FONT}}>
-      {/* Reveal glow */}
+    <AbsoluteFill style={{fontFamily: SANS}}>
+      {/* bloom light */}
       <div
         style={{
           position: 'absolute',
-          left: 960 - 700,
-          top: 500 - 700,
-          width: 1400,
-          height: 1400,
+          left: 960 - 800,
+          top: 380 - 800,
+          width: 1600,
+          height: 1600,
           borderRadius: '50%',
-          background: 'radial-gradient(circle, rgba(139,92,246,0.55) 0%, rgba(255,153,51,0.18) 35%, transparent 65%)',
-          opacity: (1 - glow) * (frame >= REVEAL ? 1 : 0),
-          transform: `scale(${0.3 + glow * 1.2})`,
+          background: 'radial-gradient(circle, rgba(10,140,240,0.45) 0%, rgba(116,80,239,0.22) 28%, transparent 60%)',
+          opacity: frame >= REVEAL ? (1 - glow) * (1 - move) : 0,
+          transform: `scale(${0.3 + glow})`,
         }}
       />
-      <div
-        style={{
-          position: 'absolute',
-          left: 960 - 200,
-          top: 500 - 200,
-          width: 400,
-          height: 400,
-          borderRadius: '50%',
-          border: '4px solid rgba(255, 182, 92, 0.8)',
-          opacity: (1 - ring) * (frame >= REVEAL + 2 ? 1 : 0),
-          transform: `scale(${0.4 + ring * 1.6})`,
-        }}
-      />
-      <BurstParticles at={REVEAL + 2} cx={960} cy={500} />
+      <Sparks at={REVEAL + 20} />
 
-      {/* Logo */}
+      {/* Lock-up: logo, wordmark, taglines */}
       <div
         style={{
           position: 'absolute',
-          left: lx - lsize / 2,
-          top: ly - lsize / 2,
-          transform: `scale(${logoPop}) rotate(${(1 - logoPop) * -30}deg)`,
+          left: 0,
+          top: 0,
+          width: 1920,
+          height: 1080,
+          transform: `translate(${-490 * move}px, ${20 * move}px) scale(${1 - 0.38 * move})`,
+          transformOrigin: '960px 540px',
         }}
       >
-        <LogoMark size={lsize} open={open} sparkle={sparkle} sparkleRotation={(1 - sparkle) * 90} />
-      </div>
-
-      {/* Wordmark + tagline */}
-      <div style={{position: 'absolute', left: 150, top: 520}}>
-        <div style={{overflow: 'hidden', paddingBottom: 8}}>
-          <div style={{display: 'flex'}}>
-            {'AIShikshaMitra'.split('').map((ch, i) => {
-              const at = WORDMARK + i * 1.3;
-              const p = pop(frame, fps, at, 16, 140);
-              return (
+        <div style={{position: 'absolute', left: 960 - 150, top: 160}}>
+          <LogoMark size={300} at={REVEAL} glow={0.9} />
+        </div>
+        <div style={{position: 'absolute', left: 0, right: 0, top: 486, display: 'flex', justifyContent: 'center'}}>
+          {'AIShikshaMitra'.split('').map((ch, i) => {
+            const at = WORD + i * 1.4;
+            const p = pop(frame, fps, at, 16, 140);
+            return (
+              <span key={i} style={{display: 'inline-block', overflow: 'hidden', padding: '0 0 14px'}}>
                 <span
-                  key={i}
                   style={{
                     display: 'inline-block',
-                    fontWeight: 700,
-                    fontSize: 112,
+                    fontFamily: SERIF,
+                    fontWeight: 600,
+                    fontSize: 124,
                     lineHeight: 1.1,
-                    letterSpacing: '-0.02em',
-                    color: C.white,
-                    ...(i < 2 ? gradientText(saffronGradient) : {}),
-                    opacity: tween(frame, [at, at + 6], [0, 1]),
-                    transform: `translateY(${(1 - p) * 120}%)`,
+                    color: C.text,
+                    transform: `translateY(${(1 - p) * 110}%)`,
+                    opacity: tween(frame, [at, at + 5], [0, 1]),
                   }}
                 >
                   {ch}
                 </span>
-              );
-            })}
-          </div>
+              </span>
+            );
+          })}
         </div>
         <div
           style={{
-            marginTop: 10,
-            fontSize: 42,
-            fontWeight: 500,
-            color: C.slate300,
-            letterSpacing: '0.01em',
-            opacity: tween(frame, [WORDMARK + 22, WORDMARK + 34], [0, 1]),
-            transform: `translateY(${tween(frame, [WORDMARK + 22, WORDMARK + 40], [24, 0])}px)`,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 18,
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: 650,
+            textAlign: 'center',
+            fontWeight: 600,
+            fontSize: 24,
+            letterSpacing: `${tween(frame, [TAG, TAG + 30], [0.6, 0.34])}em`,
+            color: C.purpleLight,
+            opacity: tween(frame, [TAG, TAG + 12], [0, 1]),
           }}
         >
-          <div style={{width: 56, height: 4, borderRadius: 2, background: brandGradient}} />
+          THE AI BUILT FOR BHARAT
+        </div>
+        <div
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: 712,
+            textAlign: 'center',
+            fontFamily: SERIF,
+            fontStyle: 'italic',
+            fontSize: 46,
+            color: C.lavender,
+            opacity: tween(frame, [SUB, SUB + 12], [0, 1]),
+            transform: `translateY(${tween(frame, [SUB, SUB + 18], [20, 0])}px)`,
+          }}
+        >
           Your AI Teaching Assistant
         </div>
       </div>
 
-      {/* Phone */}
-      <div
-        style={{
-          position: 'absolute',
-          left: 1250,
-          top: 128,
-          transform: `translateY(${(1 - phoneP) * 900}px) rotate(${(1 - phoneP) * 8}deg)`,
-          opacity: frame >= PHONE_IN ? 1 : 0,
-        }}
-      >
+      {/* The real web app */}
+      {frame >= BROWSER_IN ? (
+        <Device cam={cam}>
+          <Browser url="aishikshamitra.com/chat">
+            <AppShell active="chat">
+              <ChatPage at={BROWSER_IN + 6} />
+            </AppShell>
+          </Browser>
+        </Device>
+      ) : null}
+
+      {/* Phone (installable app) */}
+      {frame >= PHONE_IN ? (
         <div
           style={{
             position: 'absolute',
-            left: -200,
-            top: -100,
-            width: 800,
-            height: 1000,
-            background: 'radial-gradient(ellipse at center, rgba(91,91,247,0.35) 0%, transparent 60%)',
+            left: 1610,
+            top: 360,
+            transform: `translateY(${(1 - phoneP) * 700}px) rotate(${(1 - phoneP) * 10 + 4}deg) scale(0.6)`,
+            transformOrigin: '0 0',
           }}
-        />
-        <Phone width={400} darkStatus={splash > 0.5}>
-          <HomeScreen at={HOME} />
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              top: -50,
-              background: brandGradient,
-              opacity: splash,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 24,
-            }}
-          >
-            <LogoMark size={120} shadow={false} style={{transform: `scale(${pop(frame, fps, PHONE_IN + 10, 12, 140)})`}} />
-            <Wordmark size={34} />
-          </div>
-        </Phone>
-      </div>
+        >
+          <Phone width={400} darkStatus screenStyle={{background: C.app}}>
+            <div style={{position: 'absolute', left: 0, right: 0, top: 120, display: 'flex', justifyContent: 'center'}}>
+              <ChatWelcome at={PHONE_IN + 8} scale={0.78} maxWidth={400} />
+            </div>
+            <div style={{position: 'absolute', left: 0, right: 0, bottom: 24, display: 'flex', justifyContent: 'center', zoom: 0.92}}>
+              <Composer width={360} />
+            </div>
+          </Phone>
+        </div>
+      ) : null}
 
       <Sfx at={REVEAL - 2} name="impact" volume={0.55} />
-      <Sfx at={REVEAL + 12} name="shimmer" volume={0.45} />
-      <Sfx at={MOVE[0]} name="whoosh-soft" volume={0.4} />
-      <Sfx at={PHONE_IN} name="whoosh" volume={0.45} />
-      <Sfx at={HOME + 12} name="pop" volume={0.25} />
+      <Sfx at={REVEAL + 20} name="shimmer" volume={0.5} />
+      <Sfx at={WORD} name="whoosh-soft" volume={0.3} />
+      <Sfx at={MOVE[0]} name="whoosh" volume={0.4} />
+      <Sfx at={PHONE_IN} name="whoosh-soft" volume={0.35} />
     </AbsoluteFill>
   );
 };

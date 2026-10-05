@@ -1,12 +1,11 @@
 import {MapPin, Play} from 'lucide-react';
 import React from 'react';
-import {AbsoluteFill, useCurrentFrame, useVideoConfig} from 'remotion';
+import {AbsoluteFill, Img, staticFile, useCurrentFrame, useVideoConfig} from 'remotion';
 import {pop, tween} from '../anim';
 import {Avatar, AvatarStyle} from '../components/Avatar';
-import {LogoMark} from '../components/Logo';
-import {MaskWords, Sfx} from '../components/ui';
+import {SceneTitle, Sfx} from '../components/ui';
 import {PlantCellArt} from '../illustrations/MiniDiagrams';
-import {C, cardShadow, FONT, gradientText, saffronGradient} from '../theme';
+import {C, cardShadow, DEVA, SANS as FONT} from '../theme';
 import {TOOLS} from '../tools';
 
 type Teacher = {
@@ -19,7 +18,7 @@ type Teacher = {
   Mini: React.FC;
 };
 
-const Lines: React.FC<{n: number; color?: string}> = ({n, color = '#E2E8F0'}) => (
+const Lines: React.FC<{n: number; color?: string}> = ({n, color = '#2A2A30'}) => (
   <>
     {new Array(n).fill(0).map((_, i) => (
       <div key={i} style={{height: 6, width: `${[92, 78, 86, 64][i % 4]}%`, borderRadius: 3, background: color, marginTop: 7}} />
@@ -27,16 +26,17 @@ const Lines: React.FC<{n: number; color?: string}> = ({n, color = '#E2E8F0'}) =>
   </>
 );
 
-const FractionsMini: React.FC = () => (
-  <div>
-    <svg width="74" height="74" viewBox="-37 -37 74 74" style={{display: 'block', margin: '4px auto 0'}}>
-      <circle r="34" fill="#FFE8CC" />
-      <path d="M 0 0 L 0 -34 A 34 34 0 0 1 34 0 Z" fill="#FF9933" />
-      <path d="M 0 0 L 34 0 A 34 34 0 0 1 0 34 Z" fill="#FFB65C" />
-      <circle r="34" fill="none" stroke="#C2410C" strokeWidth="2" />
-    </svg>
-    <div style={{fontSize: 12, fontWeight: 700, color: C.ink, textAlign: 'center', marginTop: 4}}>¼ + ¼ = ½</div>
-    <Lines n={2} />
+const MarathiMini: React.FC = () => (
+  <div style={{marginTop: 6, borderRadius: 8, background: C.white, padding: '8px 8px 6px', fontFamily: DEVA, color: '#111827'}}>
+    <div style={{fontSize: 9, fontWeight: 700, textAlign: 'center'}}>इयत्ता चौथी - मराठी</div>
+    <div style={{height: 1, background: '#111827', margin: '5px 0'}} />
+    {['हिरवे रान सुंदर दिसते.', "'गोड आंबा'", 'विशेषण म्हणजे काय?'].map((q, i) => (
+      <div key={i} style={{fontSize: 8.5, lineHeight: 1.6}}>
+        {i + 1}. {q}
+      </div>
+    ))}
+    <div style={{height: 5, width: '70%', borderRadius: 3, background: '#E5E7EB', marginTop: 4}} />
+    <div style={{height: 5, width: '55%', borderRadius: 3, background: '#E5E7EB', marginTop: 4}} />
   </div>
 );
 
@@ -50,14 +50,14 @@ const CellMini: React.FC = () => (
 );
 
 const PoemMini: React.FC = () => (
-  <div style={{fontSize: 10.5, lineHeight: 1.5, color: C.slate600, fontStyle: 'italic', marginTop: 6}}>
+  <div style={{fontSize: 10.5, lineHeight: 1.5, color: C.text2, fontStyle: 'italic', marginTop: 6}}>
     <div style={{fontWeight: 700, fontStyle: 'normal', color: '#7C3AED', fontSize: 12}}>♪ The Rain Song</div>
     Pitter-patter on my roof,
     <br />
     clouds are dancing high,
     <br />
     puddles giggle, frogs all sing…
-    <Lines n={1} color="#EDE9FE" />
+    <Lines n={1} color="#2E2650" />
   </div>
 );
 
@@ -90,7 +90,7 @@ const VideoMini: React.FC = () => (
         <Play size={14} fill={C.white} color={C.white} />
       </div>
     </div>
-    <div style={{fontSize: 11, fontWeight: 700, color: C.ink, marginTop: 6}}>Newton’s Laws · 2:10</div>
+    <div style={{fontSize: 11, fontWeight: 600, color: C.text, marginTop: 6}}>Newton’s Laws · 2:10</div>
     <Lines n={2} />
   </div>
 );
@@ -104,7 +104,7 @@ const LessonMini: React.FC = () => (
       <circle cx="100" cy="14" r="7" fill="#FBBF24" />
     </svg>
     {['Objectives', 'Activity', 'Quiz'].map((t, i) => (
-      <div key={t} style={{display: 'flex', alignItems: 'center', gap: 6, marginTop: 6, fontSize: 11, fontWeight: 600, color: C.slate600}}>
+      <div key={t} style={{display: 'flex', alignItems: 'center', gap: 6, marginTop: 6, fontSize: 11, fontWeight: 500, color: C.text2}}>
         <div style={{width: 8, height: 8, borderRadius: 2, background: ['#5B5BF7', '#EC4899', '#22C55E'][i]}} />
         {t}
       </div>
@@ -114,13 +114,13 @@ const LessonMini: React.FC = () => (
 
 const TEACHERS: Teacher[] = [
   {
-    name: 'Priya Sharma',
-    subject: 'Mathematics',
-    place: 'Jaipur, Rajasthan',
+    name: 'Sunita Patil',
+    subject: 'Marathi',
+    place: 'Pune, Maharashtra',
     tool: 'papers',
-    screen: 'Fractions Test',
-    avatar: {bg: '#FFE8CC', skin: '#C68642', hair: '#1F1410', shirt: '#F97316', style: 'long'},
-    Mini: FractionsMini,
+    screen: 'Question Paper',
+    avatar: {bg: '#3B2F12', skin: '#C68642', hair: '#1F1410', shirt: '#F5A524', style: 'bun'},
+    Mini: MarathiMini,
   },
   {
     name: 'Arjun Nair',
@@ -128,7 +128,7 @@ const TEACHERS: Teacher[] = [
     place: 'Kochi, Kerala',
     tool: 'images',
     screen: 'Plant Cell',
-    avatar: {bg: '#DCFCE7', skin: '#8D5524', hair: '#111111', shirt: '#16A34A', style: 'short', glasses: true},
+    avatar: {bg: '#12321F', skin: '#8D5524', hair: '#111111', shirt: '#16A34A', style: 'short', glasses: true},
     Mini: CellMini,
   },
   {
@@ -137,7 +137,7 @@ const TEACHERS: Teacher[] = [
     place: 'Chennai, Tamil Nadu',
     tool: 'songs',
     screen: 'Poem',
-    avatar: {bg: '#EDE9FE', skin: '#A0662F', hair: '#1A1A1A', shirt: '#8B5CF6', style: 'bun'},
+    avatar: {bg: '#2A2145', skin: '#A0662F', hair: '#1A1A1A', shirt: '#8B5CF6', style: 'long'},
     Mini: PoemMini,
   },
   {
@@ -146,7 +146,7 @@ const TEACHERS: Teacher[] = [
     place: 'Kolkata, West Bengal',
     tool: 'slides',
     screen: 'Slides',
-    avatar: {bg: '#E0F2FE', skin: '#B97A50', hair: '#2A1A12', shirt: '#0EA5E9', style: 'wavy'},
+    avatar: {bg: '#0F2A3A', skin: '#B97A50', hair: '#2A1A12', shirt: '#0EA5E9', style: 'wavy'},
     Mini: SlideMini,
   },
   {
@@ -155,7 +155,7 @@ const TEACHERS: Teacher[] = [
     place: 'Ludhiana, Punjab',
     tool: 'videos',
     screen: 'Video',
-    avatar: {bg: '#FFE4E6', skin: '#E0AC69', hair: '#2B1B14', shirt: '#F43F5E', style: 'long', glasses: true},
+    avatar: {bg: '#3A1620', skin: '#E0AC69', hair: '#2B1B14', shirt: '#F43F5E', style: 'long', glasses: true},
     Mini: VideoMini,
   },
   {
@@ -164,7 +164,7 @@ const TEACHERS: Teacher[] = [
     place: 'Gangtok, Sikkim',
     tool: 'lesson',
     screen: 'Lesson Plan',
-    avatar: {bg: '#E0E7FF', skin: '#D9A066', hair: '#121212', shirt: '#5B5BF7', style: 'short'},
+    avatar: {bg: '#1E2350', skin: '#D9A066', hair: '#121212', shirt: '#5B5BF7', style: 'short'},
     Mini: LessonMini,
   },
 ];
@@ -205,7 +205,8 @@ const TeacherCard: React.FC<{t: Teacher; i: number}> = ({t, i}) => {
         width: CARD_W,
         height: CARD_H,
         borderRadius: 28,
-        background: C.white,
+        background: 'rgba(22,22,23,0.94)',
+        border: `1px solid ${C.line2}`,
         boxShadow: cardShadow,
         fontFamily: FONT,
         opacity: tween(frame, [at, at + 6], [0, 1]),
@@ -213,13 +214,13 @@ const TeacherCard: React.FC<{t: Teacher; i: number}> = ({t, i}) => {
       }}
     >
       <div style={{position: 'absolute', left: 28, top: 28, display: 'flex', gap: 18, alignItems: 'center'}}>
-        <div style={{borderRadius: '50%', boxShadow: `0 0 0 4px ${C.white}, 0 0 0 7px ${tool.color}55`}}>
+        <div style={{borderRadius: '50%', boxShadow: `0 0 0 3px #161617, 0 0 0 5px ${tool.color}`}}>
           <Avatar a={t.avatar} size={92} />
         </div>
         <div style={{display: 'flex', flexDirection: 'column', gap: 4}}>
-          <span style={{fontSize: 26, fontWeight: 700, color: C.ink, lineHeight: 1.1}}>{t.name}</span>
+          <span style={{fontSize: 26, fontWeight: 600, color: C.text, lineHeight: 1.1}}>{t.name}</span>
           <span style={{fontSize: 17, fontWeight: 600, color: tool.color}}>{t.subject} Teacher</span>
-          <span style={{display: 'flex', alignItems: 'center', gap: 5, fontSize: 16, fontWeight: 500, color: C.slate500}}>
+          <span style={{display: 'flex', alignItems: 'center', gap: 5, fontSize: 16, fontWeight: 500, color: C.text3}}>
             <MapPin size={16} /> {t.place}
           </span>
         </div>
@@ -234,10 +235,11 @@ const TeacherCard: React.FC<{t: Teacher; i: number}> = ({t, i}) => {
           gap: 10,
           padding: '9px 16px',
           borderRadius: 14,
-          background: tool.tint,
+          background: `${tool.color}1F`,
+          border: `1px solid ${tool.color}55`,
           fontSize: 16,
-          fontWeight: 600,
-          color: C.ink,
+          fontWeight: 500,
+          color: C.text,
         }}
       >
         <tool.Icon size={19} color={tool.color} />
@@ -252,16 +254,16 @@ const TeacherCard: React.FC<{t: Teacher; i: number}> = ({t, i}) => {
           width: 150,
           height: 230,
           borderRadius: 22,
-          background: '#0B0C11',
-          padding: 6,
+          background: '#26272C',
+          padding: 5,
           boxShadow: '0 18px 30px -10px rgba(2,6,23,0.5)',
           transform: `rotate(${i % 2 ? 4 : -4}deg)`,
         }}
       >
-        <div style={{width: '100%', height: '100%', borderRadius: 17, background: '#F5F6FB', padding: '10px 10px', overflow: 'hidden'}}>
+        <div style={{width: '100%', height: '100%', borderRadius: 17, background: C.app, padding: '10px 10px', overflow: 'hidden'}}>
           <div style={{display: 'flex', alignItems: 'center', gap: 5}}>
-            <LogoMark size={16} shadow={false} />
-            <span style={{fontSize: 10, fontWeight: 700, color: C.ink}}>{t.screen}</span>
+            <Img src={staticFile('brand/logo.png')} style={{width: 16, height: 16}} />
+            <span style={{fontSize: 10, fontWeight: 600, color: C.text}}>{t.screen}</span>
           </div>
           <t.Mini />
         </div>
@@ -271,17 +273,15 @@ const TeacherCard: React.FC<{t: Teacher; i: number}> = ({t, i}) => {
 };
 
 export const Scene09Teachers: React.FC = () => {
+  const frame = useCurrentFrame();
   return (
     <AbsoluteFill style={{fontFamily: FONT}}>
-      <div style={{position: 'absolute', left: 0, right: 0, top: 384, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6}}>
-        <MaskWords text="Built for Teachers." at={6} style={{fontSize: 108, fontWeight: 800, color: C.white, letterSpacing: '-0.03em', justifyContent: 'center'}} />
-        <MaskWords
-          text="Designed for Real Classrooms."
-          at={28}
-          stagger={3}
-          style={{fontSize: 62, fontWeight: 700, letterSpacing: '-0.02em', justifyContent: 'center'}}
-          wordStyle={() => gradientText(saffronGradient)}
-        />
+      <div style={{position: 'absolute', left: 0, right: 0, top: 364, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6}}>
+        <div style={{fontFamily: FONT, fontSize: 18, fontWeight: 600, letterSpacing: '0.34em', color: C.purpleLight, opacity: tween(frame, [2, 12], [0, 1]), marginBottom: 6}}>
+          THE AI BUILT FOR BHARAT
+        </div>
+        <SceneTitle text="Built for Teachers." at={6} size={112} style={{justifyContent: 'center'}} />
+        <SceneTitle text="Designed for Real Classrooms." at={28} size={64} italicFrom={0} style={{justifyContent: 'center', marginTop: 4}} />
       </div>
       {TEACHERS.map((t, i) => (
         <TeacherCard key={t.name} t={t} i={i} />

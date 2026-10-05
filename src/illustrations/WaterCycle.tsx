@@ -1,7 +1,7 @@
 import React from 'react';
 import {useCurrentFrame, useVideoConfig} from 'remotion';
 import {pop, tween} from '../anim';
-import {C, FONT} from '../theme';
+import {C, SANS as FONT} from '../theme';
 
 const cloud = (cx: number, cy: number, s: number) =>
   `M ${cx - 70 * s} ${cy + 28 * s}

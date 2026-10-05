@@ -1,6 +1,6 @@
 import {Wifi} from 'lucide-react';
 import React from 'react';
-import {C, FONT} from '../theme';
+import {C, SANS} from '../theme';
 
 const StatusBar: React.FC<{dark?: boolean; scale: number}> = ({dark, scale}) => {
   const color = dark ? C.white : C.ink;
@@ -16,7 +16,7 @@ const StatusBar: React.FC<{dark?: boolean; scale: number}> = ({dark, scale}) => 
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        fontFamily: FONT,
+        fontFamily: SANS,
         fontWeight: 600,
         fontSize: 15 * scale,
         color,
@@ -106,7 +106,7 @@ export const Phone: React.FC<PhoneProps> = ({width = 400, children, style, scree
           ...screenStyle,
         }}
       >
-        <div style={{position: 'absolute', top: 50 * scale, left: 0, right: 0, bottom: 0, fontFamily: FONT}}>{children}</div>
+        <div style={{position: 'absolute', top: 50 * scale, left: 0, right: 0, bottom: 0, fontFamily: SANS}}>{children}</div>
         <StatusBar dark={darkStatus} scale={scale} />
         <div
           style={{
