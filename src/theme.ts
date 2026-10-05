@@ -44,6 +44,8 @@ export const C = {
 export const SERIF = "'Playfair Display', 'Noto Sans Devanagari', serif";
 export const SANS = "'Inter', 'Noto Sans Devanagari', 'Noto Color Emoji', sans-serif";
 export const DEVA = "'Noto Sans Devanagari', 'Inter', sans-serif";
+export const HAND = "'Kalam', 'Noto Sans Devanagari', cursive";
+export const MONO = "'DejaVu Sans Mono', 'Liberation Mono', monospace";
 
 /** Logo gradient: royal blue → azure → aqua. */
 export const logoGradient = `linear-gradient(120deg, ${C.blue} 0%, ${C.azure} 45%, ${C.aqua} 100%)`;

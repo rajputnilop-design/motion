@@ -42,6 +42,26 @@ Rebuild them with `npm run render:4k`, the three audio renders below, then `bash
 for L in en mr hi; do npx remotion render AIShikshaMitra out/mix-$L.wav --codec=wav --props="{\"voLang\":\"$L\"}"; done
 ```
 
+## Reel ads (9:16, 30 s)
+
+Three vertical 1080×1920 ads for Instagram Reels / YouTube Shorts / WhatsApp Status, built from the screen
+recording of the mobile app. Each one has its own English voice-over and music, big serif headlines that carry the
+message with the sound off, and the same end card (logo bloom → line → **Try it today** · aishikshamitra.com).
+
+| File | Story |
+|------|-------|
+| `out/reels/AIShikshaMitra-Reel1-Aasha.mp4` | *"What if planning a lesson took just one sentence?"* Tap the voice button, ask Aasha for a Class 6 Science plan, she opens the Lesson Planner; pick the NCERT chapter, generate, and scroll the plan: board plan, questions to ask, homework and the local Pune examples. |
+| `out/reels/AIShikshaMitra-Reel2-QuestionPapers.mp4` | *"Still making question papers late at night?"* 11:59 PM lock screen → Question Paper Studio → board, class, chapter, marks blueprint (13 questions · 30 marks) → the paper → PDF / Word → Publish with join code LTTHN596 → submissions and the AI evaluation report shared on WhatsApp. |
+| `out/reels/AIShikshaMitra-Reel3-Toolkit.mp4` | *"Snap a photo of your marks register, and get a clean spreadsheet."* The Lab, English with Aasha (explained in Marathi), MahaTET mock tests with official answer keys, Student Hub and live AI courses. |
+
+Rebuild with `REMOTION_BROWSER=/path/to/chrome-headless-shell bash scripts/make_reels.sh` (renders at 2× and
+downscales; audio mastered to −14 LUFS). Screens live in `src/reels/` (`screens1–3.tsx`), timing and voice-over
+placement in [`src/reels/reels.json`](src/reels/reels.json), the narration and music generators are
+`audio-tools/generate_reel_vo.py` and `audio-tools/generate_reel_music.py`.
+
+The student names, marks, report text, register data and the MahaTET question are sample content written for the
+ads; everything else (screens, wording, features, the join-code flow) follows the screen recording.
+
 ## Languages
 
 The composition takes a `voLang` prop (`en`, `mr`, `hi`); on-screen text stays the same. Marathi and Hindi lines are
@@ -91,12 +111,14 @@ src/
   components/          Browser window, AppShell (real sidebar), Chat, Studio form, Generating orb,
                        3D camera (Device), Logo bloom, phone, tap indicator, text animations
   illustrations/       Marathi question paper, lesson plan, water cycle, mini diagrams, slides, chalkboard
+  reels/               the three 9:16 reel ads: mobile app shell, screens, reel frame and end card
 public/
   brand/               logo.png and its layers (logo-*.png) for the bloom, film-grain tile
   fonts/               Playfair Display, Inter, Noto Sans Devanagari (SIL OFL)
   audio/vo/            narration lines
   audio/sfx/           UI and transition sounds
   audio/music.wav      music bed
+  audio/reels/         reel narration lines and music beds
 audio-tools/           Python generators for all of the audio
 ```
 

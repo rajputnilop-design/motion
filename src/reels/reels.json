@@ -1,0 +1,45 @@
+{
+  "fps": 30,
+  "width": 1080,
+  "height": 1920,
+  "duration": 900,
+  "endCard": 760,
+  "reels": {
+    "aasha": {
+      "vo": [
+        {"file": "r1_1", "at": 8, "seconds": 3.008},
+        {"file": "r1_2", "at": 108, "seconds": 3.349},
+        {"file": "r1_3", "at": 218, "seconds": 3.179},
+        {"file": "r1_4", "at": 330, "seconds": 3.904},
+        {"file": "r1_5", "at": 462, "seconds": 4.757},
+        {"file": "r1_6", "at": 618, "seconds": 2.773},
+        {"file": "r1_7", "at": 772, "seconds": 2.987}
+      ],
+      "music": {"prog": ["C", "G", "Am", "F"], "seed": 11}
+    },
+    "papers": {
+      "vo": [
+        {"file": "r2_1", "at": 8, "seconds": 2.325},
+        {"file": "r2_2", "at": 92, "seconds": 1.771},
+        {"file": "r2_3", "at": 160, "seconds": 3.136},
+        {"file": "r2_4", "at": 330, "seconds": 2.517},
+        {"file": "r2_5", "at": 420, "seconds": 4.757},
+        {"file": "r2_6", "at": 580, "seconds": 4.117},
+        {"file": "r2_7", "at": 772, "seconds": 3.2}
+      ],
+      "music": {"prog": ["Am", "F", "C", "G"], "seed": 22}
+    },
+    "toolkit": {
+      "vo": [
+        {"file": "r3_1", "at": 8, "seconds": 1.941},
+        {"file": "r3_2", "at": 72, "seconds": 1.429},
+        {"file": "r3_3", "at": 150, "seconds": 4.032},
+        {"file": "r3_4", "at": 300, "seconds": 3.755},
+        {"file": "r3_5", "at": 450, "seconds": 4.693},
+        {"file": "r3_6", "at": 615, "seconds": 3.157},
+        {"file": "r3_7", "at": 772, "seconds": 2.923}
+      ],
+      "music": {"prog": ["F", "C", "G", "Am"], "seed": 33}
+    }
+  }
+}

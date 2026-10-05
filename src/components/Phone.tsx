@@ -2,7 +2,7 @@ import {Wifi} from 'lucide-react';
 import React from 'react';
 import {C, SANS} from '../theme';
 
-const StatusBar: React.FC<{dark?: boolean; scale: number}> = ({dark, scale}) => {
+const StatusBar: React.FC<{dark?: boolean; scale: number; time: string}> = ({dark, scale, time}) => {
   const color = dark ? C.white : C.ink;
   return (
     <div
@@ -23,7 +23,7 @@ const StatusBar: React.FC<{dark?: boolean; scale: number}> = ({dark, scale}) => 
         zIndex: 20,
       }}
     >
-      <span>10:30</span>
+      <span>{time}</span>
       <div style={{display: 'flex', alignItems: 'center', gap: 6 * scale}}>
         <div style={{display: 'flex', alignItems: 'flex-end', gap: 2 * scale, height: 12 * scale}}>
           {[0.4, 0.6, 0.8, 1].map((h) => (
@@ -54,12 +54,13 @@ type PhoneProps = {
   style?: React.CSSProperties;
   screenStyle?: React.CSSProperties;
   darkStatus?: boolean;
+  time?: string;
 };
 
 export const PHONE_RATIO = 2.06;
 
 /** Generic modern smartphone mockup. Children render inside the screen (below the status bar). */
-export const Phone: React.FC<PhoneProps> = ({width = 400, children, style, screenStyle, darkStatus}) => {
+export const Phone: React.FC<PhoneProps> = ({width = 400, children, style, screenStyle, darkStatus, time = '10:30'}) => {
   const height = width * PHONE_RATIO;
   const scale = width / 400;
   const bezel = 12 * scale;
@@ -107,7 +108,7 @@ export const Phone: React.FC<PhoneProps> = ({width = 400, children, style, scree
         }}
       >
         <div style={{position: 'absolute', top: 50 * scale, left: 0, right: 0, bottom: 0, fontFamily: SANS}}>{children}</div>
-        <StatusBar dark={darkStatus} scale={scale} />
+        <StatusBar dark={darkStatus} scale={scale} time={time} />
         <div
           style={{
             position: 'absolute',
