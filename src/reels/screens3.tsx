@@ -374,7 +374,12 @@ const LESSONS = [
 ];
 
 /** More → English Speaking: English with Aasha. */
-export const EnglishHomeM: React.FC<{levelAt: number; lessonAt: number; scrollAt: number}> = ({levelAt, lessonAt, scrollAt}) => {
+export const EnglishHomeM: React.FC<{levelAt: number; lessonAt: number; scrollAt: number; explainIn?: 'Marathi' | 'Hindi'}> = ({
+  levelAt,
+  lessonAt,
+  scrollAt,
+  explainIn = 'Marathi',
+}) => {
   const frame = useCurrentFrame();
   const scroll = tween(frame, [scrollAt, scrollAt + 16], [0, 250], easeInOut);
   const lvl = frame >= levelAt + 2;
@@ -393,7 +398,7 @@ export const EnglishHomeM: React.FC<{levelAt: number; lessonAt: number; scrollAt
           <FieldLabel>YOUR LANGUAGE — AASHA EXPLAINS IN THIS</FieldLabel>
           <div style={{display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 6}}>
             {LANGS.map((l) => (
-              <Chip key={l} label={l} small on={l === 'Marathi'} style={{justifyContent: 'center'}} />
+              <Chip key={l} label={l} small on={l === explainIn} style={{justifyContent: 'center'}} />
             ))}
           </div>
           <FieldLabel>YOUR LEVEL</FieldLabel>
@@ -451,8 +456,13 @@ export const EnglishHomeM: React.FC<{levelAt: number; lessonAt: number; scrollAt
   );
 };
 
-/** A practice turn: Aasha explains in Marathi, says it in English, you repeat. */
-export const EnglishPracticeM: React.FC<{at: number}> = ({at}) => {
+const EXPLAIN = {
+  Marathi: 'मुलांना पुस्तक उघडायला सांगायचं आहे? इंग्रजीत असं म्हणा:',
+  Hindi: 'बच्चों से किताब खोलने को कहना है? इंग्लिश में ऐसे बोलिए:',
+};
+
+/** A practice turn: Aasha explains in your language, says it in English, you repeat. */
+export const EnglishPracticeM: React.FC<{at: number; explainIn?: 'Marathi' | 'Hindi'}> = ({at, explainIn = 'Marathi'}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const b = (d: number) => {
@@ -463,11 +473,11 @@ export const EnglishPracticeM: React.FC<{at: number}> = ({at}) => {
   const t = (frame % 30) / 30;
   return (
     <div style={{position: 'absolute', inset: 0}}>
-      <BackTitle title="In the classroom" sub="Lesson 2 · Beginner · explained in Marathi" />
+      <BackTitle title="In the classroom" sub={`Lesson 2 · Beginner · explained in ${explainIn}`} />
       <div style={{padding: '6px 14px', display: 'flex', flexDirection: 'column', gap: 10}}>
         <div style={{alignSelf: 'flex-start', maxWidth: '86%', borderRadius: '16px 16px 16px 4px', background: '#18181B', border: '1px solid #26262A', padding: '10px 12px', ...b(0)}}>
           <div style={{fontSize: 11, fontWeight: 700, color: '#8B6CF6', marginBottom: 3}}>Aasha</div>
-          <div style={{fontSize: 14.5, color: C.text, lineHeight: 1.5}}>मुलांना पुस्तक उघडायला सांगायचं आहे? इंग्रजीत असं म्हणा:</div>
+          <div style={{fontSize: 14.5, color: C.text, lineHeight: 1.5}}>{EXPLAIN[explainIn]}</div>
         </div>
         <div style={{borderRadius: 16, background: 'linear-gradient(135deg, rgba(116,80,239,0.3), rgba(20,80,245,0.2))', border: '1px solid rgba(139,108,246,0.5)', padding: '14px 14px', ...b(14)}}>
           <div style={{display: 'flex', alignItems: 'center', gap: 8}}>

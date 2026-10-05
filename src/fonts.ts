@@ -16,6 +16,11 @@ const faces: {family: string; file: string; weight: string; style?: string}[] = 
   })),
   ...['400', '700'].map((w) => ({family: 'Kalam', file: `kalam-latin-${w}-normal.woff2`, weight: w})),
   ...['400', '500', '600', '700'].map((w) => ({
+    family: 'Noto Serif Devanagari',
+    file: `noto-serif-devanagari-devanagari-${w}-normal.woff2`,
+    weight: w,
+  })),
+  ...['400', '500', '600', '700'].map((w) => ({
     family: 'Noto Sans Devanagari',
     file: `noto-sans-devanagari-devanagari-${w}-normal.woff2`,
     weight: w,

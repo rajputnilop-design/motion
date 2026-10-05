@@ -8,7 +8,11 @@ import {C, gradientText, MONO, namasteGradient, SANS, SERIF} from '../theme';
 import {BackTitle, Chip, FieldLabel, PrimaryButton, SCREEN_W, SelectBox, VoiceFab} from './mobile';
 
 /** "Namaste 👋 I'm Aasha" home with the composer and the voice button. */
-export const ChatHomeM: React.FC<{tapFabAt?: number}> = ({tapFabAt = -99}) => (
+export const ChatHomeM: React.FC<{tapFabAt?: number; draft?: string; typeAt?: number}> = ({tapFabAt = -99, draft, typeAt = 0}) => {
+  const frame = useCurrentFrame();
+  const shown = draft ? typed(draft, frame, typeAt, 0.9) : '';
+  const typing = !!draft && frame >= typeAt - 4 && shown.length < draft.length + 20;
+  return (
   <div style={{position: 'absolute', inset: 0}}>
     <div style={{position: 'absolute', left: 14, top: 12, display: 'flex', alignItems: 'center', gap: 10}}>
       <div style={{width: 36, height: 36, borderRadius: 10, background: C.panel, border: `1px solid ${C.line2}`, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
@@ -31,8 +35,11 @@ export const ChatHomeM: React.FC<{tapFabAt?: number}> = ({tapFabAt = -99}) => (
       <VoiceFab pulse />
     </div>
     <div style={{position: 'absolute', left: 14, right: 14, bottom: 40}}>
-      <div style={{height: 100, borderRadius: 16, background: '#131315', border: '1px solid #26262A', padding: '14px 14px 10px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
-        <div style={{fontSize: 14.5, color: '#8E8C99'}}>Ask Aasha...</div>
+      <div style={{height: 100, borderRadius: 16, background: '#131315', border: `1px solid ${typing ? 'rgba(139,108,246,0.6)' : '#26262A'}`, padding: '14px 14px 10px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
+        <div style={{fontSize: 14.5, color: shown ? C.text : '#8E8C99', whiteSpace: 'nowrap', overflow: 'hidden'}}>
+          {shown || 'Ask Aasha...'}
+          {typing && caretVisible(frame) ? <span style={{color: '#8B6CF6'}}>|</span> : null}
+        </div>
         <div style={{display: 'flex', alignItems: 'center', gap: 14}}>
           <Paperclip size={17} color="#A1A1AA" />
           <Mic size={17} color="#A1A1AA" />
@@ -51,7 +58,8 @@ export const ChatHomeM: React.FC<{tapFabAt?: number}> = ({tapFabAt = -99}) => (
     </div>
     <Tap x={SCREEN_W - 43} y={407} at={tapFabAt} />
   </div>
-);
+  );
+};
 
 type Line = {who: 'You' | 'Aasha'; text: string; at: number};
 

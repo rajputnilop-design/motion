@@ -62,6 +62,42 @@ placement in [`src/reels/reels.json`](src/reels/reels.json), the narration and m
 The student names, marks, report text, register data and the MahaTET question are sample content written for the
 ads; everything else (screens, wording, features, the join-code flow) follows the screen recording.
 
+## How-to demo for teachers (16:9, ~3–4 min, English · Hindi · Marathi)
+
+A chaptered walkthrough of the whole app on a phone: the five tabs, Chat and the voice call with Aasha, Lesson
+Planner, Question Paper Studio (wizard → paper → PDF/Word → publish with a join code → AI evaluation report on
+WhatsApp), AI Tools, The Lab, English Speaking, MahaTET Practice, Student Hub, Courses and the More menu. Each step
+has a spotlight on the part of the screen being explained, a title and live caption in the video's language, an
+"In this chapter" checklist and a chapter progress bar. Compositions: `Demo-EN`, `Demo-HI`, `Demo-MR`.
+
+Everything is driven by [`src/demo/script.json`](src/demo/script.json) (narration and on-screen text for every step in
+all three languages). Step lengths follow the narration, so the video re-times itself when the voice changes.
+
+**1. Narration with ElevenLabs** (6,931 characters for all three languages, so it fits the free 10,000 credits):
+
+```bash
+export ELEVENLABS_API_KEY=...        # environment variable; never commit it
+python audio-tools/generate_demo_vo.py --list-voices hi                 # optional: browse Indian voices
+python audio-tools/generate_demo_vo.py --lang en hi mr                  # all 27 lines per language
+python audio-tools/generate_demo_vo.py --lang mr --only s10 --force     # retake one line
+```
+
+It picks the newest ElevenLabs model that supports each language (Eleven v3 or later), checks the credits before
+spending, and uses the voices in `audio-tools/demo_voices.json` (or picks a popular native female narrator from the
+Voice Library and saves its ID there). MP3s are kept in `voiceover/demo/<lang>/`; lines that already exist are never
+paid for twice. In a cloud session, `api.elevenlabs.io` must be allowed under Network access. The free ElevenLabs
+plan is for non-commercial use with attribution; publishing the demo needs a paid plan's commercial licence.
+
+No API? Paste `voiceover/demo/<lang>.txt` into elevenlabs.io (one paragraph per line, pauses between them) and
+split the download: `python audio-tools/generate_demo_vo.py --from-audio hi=/path/to/hindi.mp3`.
+
+**2. Build:** `REMOTION_BROWSER=/path/to/chrome-headless-shell bash scripts/make_demo.sh` writes
+`out/demo/AIShikshaMitra-HowTo-{English,Hindi,Marathi}.mp4` (1080p, −14 LUFS) plus `-share.mp4` copies under 30 MB;
+`SCALE=2` also gives 4K masters. Until the ElevenLabs lines exist, previews use offline scratch narration
+(`python audio-tools/scratch_demo_vo.py --models /path/to/kokoro-models`), which is not for publishing.
+
+Sample content (students, marks, the register, the MahaTET question, chat drafts) is made up for the demo.
+
 ## Languages
 
 The composition takes a `voLang` prop (`en`, `mr`, `hi`); on-screen text stays the same. Marathi and Hindi lines are

@@ -37,7 +37,8 @@ export const ChatsPanel: React.FC<{items?: string[]}> = ({items = CHATS}) => (
 );
 
 /** The chat composer: "Ask ShikshakMitra AI..." with attach / mic / voice and the Auto | Pro toggle. */
-export const Composer: React.FC<{text?: string; typeAt?: number; cpf?: number; sendAt?: number; width?: number}> = ({
+export const Composer: React.FC<{text?: string; typeAt?: number; cpf?: number; sendAt?: number; width?: number; placeholder?: string}> = ({
+  placeholder = 'Ask ShikshakMitra AI...',
   text = '',
   typeAt = 0,
   cpf = 1,
@@ -65,7 +66,7 @@ export const Composer: React.FC<{text?: string; typeAt?: number; cpf?: number; s
         }}
       >
         <div style={{fontSize: 16, color: ready ? C.text : '#8E8C99', whiteSpace: 'nowrap', overflow: 'hidden'}}>
-          {ready ? shown : 'Ask ShikshakMitra AI...'}
+          {ready ? shown : placeholder}
           {typing && caretVisible(frame) ? <span style={{color: '#8B6CF6'}}>|</span> : null}
         </div>
         <div style={{display: 'flex', alignItems: 'center', gap: 18}}>
@@ -101,7 +102,7 @@ export const Composer: React.FC<{text?: string; typeAt?: number; cpf?: number; s
 };
 
 /** Empty-chat welcome exactly as on aishikshamitra.com/chat. `at` staggers the entrance. */
-export const ChatWelcome: React.FC<{at?: number; scale?: number; maxWidth?: number}> = ({at = -100, scale = 1, maxWidth = 520}) => {
+export const ChatWelcome: React.FC<{at?: number; scale?: number; maxWidth?: number; name?: string}> = ({at = -100, scale = 1, maxWidth = 520, name = 'ShikshakMitra AI'}) => {
   const frame = useCurrentFrame();
   const show = (d: number) => ({
     opacity: tween(frame, [at + d, at + d + 10], [0, 1]),
@@ -117,7 +118,7 @@ export const ChatWelcome: React.FC<{at?: number; scale?: number; maxWidth?: numb
         <span style={{fontFamily: SERIF, fontSize: 46, ...gradientText(namasteGradient)}}>Namaste</span>
         <span style={{fontSize: 38}}>👋</span>
       </div>
-      <div style={{fontFamily: SERIF, fontSize: 30, color: C.text, marginTop: 4, ...show(8)}}>I’m ShikshakMitra AI</div>
+      <div style={{fontFamily: SERIF, fontSize: 30, color: C.text, marginTop: 4, ...show(8)}}>I’m {name}</div>
       <div style={{fontSize: 17, color: '#8F8AA3', marginTop: 12, textAlign: 'center', maxWidth, lineHeight: 1.45, ...show(12)}}>
         Your teaching companion for papers, lessons, and more.
       </div>
@@ -143,21 +144,23 @@ export const VoiceFab: React.FC = () => (
 );
 
 /** The full empty-chat page (chats list, welcome, composer, voice button) inside the app content area. */
-export const ChatPage: React.FC<{at?: number; panel?: boolean; children?: React.ReactNode; composer?: React.ReactNode}> = ({
+export const ChatPage: React.FC<{at?: number; panel?: boolean; children?: React.ReactNode; composer?: React.ReactNode; chats?: string[]; name?: string}> = ({
   at = -100,
   panel = true,
   children,
   composer,
+  chats,
+  name,
 }) => {
   const left = panel ? 280 : 0;
   return (
     <div style={{position: 'absolute', inset: 0, fontFamily: SANS}}>
-      {panel ? <ChatsPanel /> : null}
+      {panel ? <ChatsPanel items={chats} /> : null}
       <div style={{position: 'absolute', left: left + 18, top: 18, fontSize: 15, color: '#D4D4D8'}}>New chat</div>
       <div style={{position: 'absolute', left, right: 0, top: 0, bottom: 0}}>
         {children ?? (
           <div style={{position: 'absolute', left: 0, right: 0, top: 200, display: 'flex', justifyContent: 'center'}}>
-            <ChatWelcome at={at} />
+            <ChatWelcome at={at} name={name} />
           </div>
         )}
         <div style={{position: 'absolute', left: 0, right: 0, bottom: 26, display: 'flex', justifyContent: 'center'}}>

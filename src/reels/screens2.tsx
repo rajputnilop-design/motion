@@ -306,12 +306,14 @@ export const QPBlueprintM: React.FC<{mcqAt: number; longAt: number; nextAt: numb
       <div style={{display: 'flex', flexDirection: 'column', gap: 8, padding: '12px 14px 0'}}>
         {rows.map((r) => (
           <div key={r.t} style={{borderRadius: 13, background: '#131315', border: '1px solid #232327', padding: '9px 12px 8px'}}>
-            <div style={{fontSize: 14, fontWeight: 600, color: C.text, marginBottom: 6}}>{r.t}</div>
+            <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: 6}}>
+              <span style={{fontSize: 14, fontWeight: 600, color: C.text}}>{r.t}</span>
+              <span style={{fontSize: 12, color: '#9B7CF8'}}>= {r.q * r.m} marks</span>
+            </div>
             <div style={{display: 'flex', gap: 14}}>
               <Stepper label="Questions" value={r.q} plusAt={r.at} />
               <Stepper label="Marks each" value={r.m} />
             </div>
-            <div style={{fontSize: 12, color: '#9B7CF8', marginTop: 6}}>= {r.q * r.m} marks</div>
           </div>
         ))}
         <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '6px 4px', fontSize: 13.5}}>
@@ -321,7 +323,7 @@ export const QPBlueprintM: React.FC<{mcqAt: number; longAt: number; nextAt: numb
       </div>
       <NavButtons nextAt={nextAt} />
       <Tap x={14 + 12 + (SCREEN_W - 28 - 24 - 14) / 2 - 17} y={64 + 12 + 9 + 26 + 16 + 17} at={mcqAt} />
-      <Tap x={14 + 12 + (SCREEN_W - 28 - 24 - 14) / 2 - 17} y={64 + 12 + 9 + 26 + 16 + 17 + 2 * 121} at={longAt} />
+      <Tap x={14 + 12 + (SCREEN_W - 28 - 24 - 14) / 2 - 17} y={64 + 12 + 9 + 26 + 16 + 17 + 2 * 100} at={longAt} />
       <Tap x={NEXT_X} y={NEXT_Y} at={nextAt} />
     </div>
   );

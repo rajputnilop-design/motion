@@ -42,6 +42,8 @@ export const C = {
 };
 
 export const SERIF = "'Playfair Display', 'Noto Sans Devanagari', serif";
+/** Serif for headings that may be in Hindi or Marathi: Playfair for Latin, Noto Serif Devanagari for Devanagari. */
+export const SERIF_IN = "'Playfair Display', 'Noto Serif Devanagari', serif";
 export const SANS = "'Inter', 'Noto Sans Devanagari', 'Noto Color Emoji', sans-serif";
 export const DEVA = "'Noto Sans Devanagari', 'Inter', sans-serif";
 export const HAND = "'Kalam', 'Noto Sans Devanagari', cursive";

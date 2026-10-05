@@ -123,7 +123,7 @@ const Headline: React.FC<{beat: Beat}> = ({beat}) => {
 };
 
 /** Debug overlay: a 25 px grid in the app's content coordinates (below the header), for placing taps. */
-const TapGrid: React.FC = () => (
+export const TapGrid: React.FC = () => (
   <div style={{position: 'absolute', left: 0, right: 0, top: HEADER_H, bottom: 0, zIndex: 99, pointerEvents: 'none'}}>
     {Array.from({length: 26}, (_, i) => (
       <div key={`h${i}`} style={{position: 'absolute', left: 0, right: 0, top: i * 25, height: 1, background: i % 2 ? 'rgba(0,255,0,0.35)' : 'rgba(255,0,0,0.7)'}}>

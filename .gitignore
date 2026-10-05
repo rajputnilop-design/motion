@@ -11,3 +11,11 @@ out/AIShikshaMitra-4K-full.mp4
 out/AIShikshaMitra-share.mp4
 out/reels/raw-*.mp4
 out/reels/mix-*.wav
+public/audio/demo-scratch/
+public/audio/demo/en/
+public/audio/demo/hi/
+public/audio/demo/mr/
+public/audio/demo/music-*.wav
+out/demo/raw-*.mp4
+out/demo/mix-*.wav
+out/demo/preview-*.mp4
