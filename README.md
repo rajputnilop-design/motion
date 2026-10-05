@@ -91,6 +91,10 @@ plan is for non-commercial use with attribution; publishing the demo needs a pai
 No API? Paste `voiceover/demo/<lang>.txt` into elevenlabs.io (one paragraph per line, pauses between them) and
 split the download: `python audio-tools/generate_demo_vo.py --from-audio hi=/path/to/hindi.mp3`.
 
+The narration used now is the ElevenLabs recordings in `voiceover/demo/<lang>-full.mp3`. They were split into the
+27 lines by aligning speech recognition to the script, and the cut times are kept in `voiceover/demo/<lang>-cuts.json`
+(`--convert-only` re-cuts them, with one gain per language so the delivery stays natural).
+
 **2. Build:** `REMOTION_BROWSER=/path/to/chrome-headless-shell bash scripts/make_demo.sh` writes
 `out/demo/AIShikshaMitra-HowTo-{English,Hindi,Marathi}.mp4` (1080p, −14 LUFS) plus `-share.mp4` copies under 30 MB;
 `SCALE=2` also gives 4K masters. Until the ElevenLabs lines exist, previews use offline scratch narration
