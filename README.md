@@ -30,7 +30,7 @@ Scenes are joined by 0.5 s dip-and-zoom transitions; all durations, voice-over o
 | File | What it is |
 |------|------------|
 | `out/AIShikshaMitra.mp4` | 1080p master (English), downscaled from the 4K render for extra sharpness |
-| `out/AIShikshaMitra-4K.mp4` | 3840×2160 UHD master (not in git: over GitHub's 100 MB limit) |
+| `out/AIShikshaMitra-4K.mp4` | 3840×2160 UHD (89 MB, fits GitHub's 100 MB limit). The 172 MB full render, `out/AIShikshaMitra-4K-full.mp4`, stays out of git |
 | `out/AIShikshaMitra-Marathi.mp4`, `out/AIShikshaMitra-Hindi.mp4` | Same video with the Marathi / Hindi soundtrack |
 | `out/AIShikshaMitra-Soundtrack-{English,Marathi,Hindi}.wav` | Full-length soundtracks (voice + music + effects, −16 LUFS), ready to upload as alternate audio tracks |
 | `out/AIShikshaMitra-Voice-{English,Marathi,Hindi}.wav` | Voice-only stems, every line at its exact time, for editors |
