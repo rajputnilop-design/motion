@@ -1,0 +1,28 @@
+{
+  "name": "aishikshamitra-motion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AIShikshaMitra — Your AI Teaching Assistant: promo motion graphic built with Remotion",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "remotion render AIShikshaMitra out/raw.mp4 && npm run master",
+    "still": "remotion still AIShikshaMitra",
+    "typecheck": "tsc --noEmit",
+    "master": "remotion ffmpeg -y -i out/raw.mp4 -c:v copy -af loudnorm=I=-16:TP=-1.5:LRA=11 -ar 48000 -c:a aac -b:a 192k -movflags +faststart out/AIShikshaMitra.mp4"
+  },
+  "dependencies": {
+    "@fontsource/noto-sans-devanagari": "^5.3.0",
+    "@fontsource/poppins": "^5.3.0",
+    "@remotion/cli": "^4.0.533",
+    "@remotion/fonts": "^4.0.533",
+    "@remotion/transitions": "^4.0.533",
+    "lucide-react": "^1.52.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "remotion": "^4.0.533"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "typescript": "^7.0.2"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "transition": 15,
+  "scenes": [
+    {"id": "problem", "duration": 210},
+    {"id": "intro", "duration": 180, "vo": {"file": "vo02", "at": 18, "seconds": 4.373}},
+    {"id": "lesson", "duration": 195, "vo": {"file": "vo03", "at": 15, "seconds": 2.517}},
+    {"id": "papers", "duration": 210, "vo": {"file": "vo04", "at": 15, "seconds": 4.395}},
+    {"id": "visuals", "duration": 195, "vo": {"file": "vo05", "at": 18, "seconds": 3.243}},
+    {"id": "slides", "duration": 210, "vo": {"file": "vo06", "at": 15, "seconds": 4.395}},
+    {"id": "videos", "duration": 225, "vo": {"file": "vo07", "at": 15, "seconds": 5.355}},
+    {"id": "all", "duration": 210, "vo": {"file": "vo08", "at": 15, "seconds": 5.205}},
+    {"id": "teachers", "duration": 195, "vo": {"file": "vo09", "at": 30, "seconds": 3.669}},
+    {"id": "cta", "duration": 300, "vo": {"file": "vo10", "at": 18, "seconds": 4.587}}
+  ],
+  "cues": {
+    "freeze": {"scene": "problem", "at": 150},
+    "reveal": {"scene": "intro", "at": 8},
+    "finalHit": {"scene": "cta", "at": 10}
+  }
+}
