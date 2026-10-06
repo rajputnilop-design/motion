@@ -1,48 +1,113 @@
 {
  "fps": 30,
- "title": {"mr": "पुढचा धडा", "en": "The Next Lesson"},
+ "title": {
+  "en": "Teachers build minds",
+  "mr": "शिक्षक माणसं घडवतात"
+ },
  "steps": [
-  {"id": "m01", "scene": "bell",
-   "vo": {"mr": "प्रत्येक पिढीला एक नवा धडा लागतो."},
-   "en": "Every generation needs a new lesson."},
-  {"id": "m02", "scene": "eras",
-   "vo": {"mr": "पाटी-पेन्सिल आली, तेव्हा तुम्ही शिकवलं. संगणक आला, तेव्हाही तुम्हीच शिकवलं. मोबाईल आला... तेव्हाही तुम्हीच."},
-   "en": "When the slate came, you taught. When the computer came, you taught again. When the mobile came... it was you again."},
-  {"id": "m03", "scene": "switch",
-   "vo": {"mr": "आज AI आलंय. आणि याला बंद करण्याचं कोणतंही बटण नाही."},
-   "en": "Today, AI is here. And there is no button to switch it off."},
-  {"id": "m04", "scene": "speed",
-   "vo": {"mr": "जग प्रचंड वेगाने बदलतंय. जे हा बदल आत्मसात करतील, उद्याचं जग त्यांच्याच हातात असेल."},
-   "en": "The world is changing at great speed. Those who embrace this change will hold tomorrow's world in their hands."},
-  {"id": "m05", "scene": "india",
-   "vo": {"mr": "आपला महाराष्ट्र, आपला भारत, या प्रवासात मागे राहता कामा नये."},
-   "en": "Our Maharashtra, our India, must not be left behind on this journey."},
-  {"id": "m06", "scene": "worry",
-   "vo": {"mr": "पण एक काळजी आहे. सोयीच्या मागे धावता धावता, आपण स्वतः विचार करणं विसरत चाललो आहोत."},
-   "en": "But there is a worry. Running after convenience, we are slowly forgetting how to think for ourselves."},
-  {"id": "m07", "scene": "question",
-   "vo": {"mr": "उत्तरं एका क्षणात मिळतात. पण योग्य प्रश्न विचारायला कोण शिकवणार?"},
-   "en": "Answers arrive in a second. But who will teach us to ask the right questions?"},
-  {"id": "m08", "scene": "teacher",
-   "vo": {"mr": "AI उत्तर देऊ शकतं. पण खरं-खोटं ओळखायला, स्वतः विचार करायला, आणि माणूस म्हणून जगायला... हे फक्त शिक्षकच शिकवू शकतो."},
-   "en": "AI can give answers. But to tell true from false, to think for yourself, to live as a human being... only a teacher can teach that."},
-  {"id": "m09", "scene": "guru",
-   "vo": {"mr": "म्हणूनच तर म्हणतात... गुरु साक्षात परब्रह्म."},
-   "en": "That is why it is said... the Guru is the Divine itself."},
-  {"id": "m10", "scene": "ripple",
-   "vo": {"mr": "या बदलाचं नेतृत्व आता तुमच्या हातात आहे. आधी स्वतः शिका. मग वर्गाला, घराला, आणि संपूर्ण समाजाला शिकवा."},
-   "en": "Leading this change is now in your hands. Learn it yourself first. Then teach your class, your home, and the whole of society."},
-  {"id": "m11", "scene": "brand",
-   "vo": {"mr": "या प्रवासात तुमच्या सोबत आहे, ए आय शिक्षामित्र. भारतासाठी बनवलेलं ए आय."},
-   "en": "On this journey, AIShikshaMitra walks with you. The AI built for Bharat."},
-  {"id": "m12", "scene": "rollcall",
-   "vo": {"mr": "भविष्याची हजेरी सुरू झाली आहे."},
-   "en": "The future has begun taking attendance."},
-  {"id": "m13", "scene": "call",
-   "vo": {"mr": "शिक्षक?"},
-   "en": "Teacher?"},
-  {"id": "m14", "scene": "present",
-   "vo": {"mr": "हजर!"},
-   "en": "Present!"}
+  {
+   "id": "m01",
+   "scene": "hook",
+   "vo": {
+    "en": "Your students have found a new teacher.",
+    "mr": "तुमच्या विद्यार्थ्यांना एक नवा शिक्षक मिळालाय."
+   }
+  },
+  {
+   "id": "m02",
+   "scene": "machine",
+   "vo": {
+    "en": "It answers anything in three seconds. Never gets tired. And there is no off switch.",
+    "mr": "तीन सेकंदात उत्तर. कधीच थकत नाही. आणि त्याला बंद करायचं बटणच नाही."
+   }
+  },
+  {
+   "id": "m03",
+   "scene": "turn",
+   "vo": {
+    "en": "But there are things AI will never do.",
+    "mr": "पण काही गोष्टी AI ला कधीच जमणार नाहीत."
+   }
+  },
+  {
+   "id": "m04",
+   "scene": "understood",
+   "vo": {
+    "en": "It can't tell when a child says, I understood... and didn't.",
+    "mr": "मूल 'समजलं' म्हणतं... पण खरंच समजलंय का, हे AI ला कळत नाही."
+   }
+  },
+  {
+   "id": "m05",
+   "scene": "lastbench",
+   "vo": {
+    "en": "It can't see the girl on the last bench, who never raises her hand.",
+    "mr": "शेवटच्या बाकावरची, कधीच हात वर न करणारी ती मुलगी... AI ला दिसत नाही."
+   }
+  },
+  {
+   "id": "m06",
+   "scene": "doubt",
+   "vo": {
+    "en": "It can't teach a child to question an answer.",
+    "mr": "आणि उत्तरावरच प्रश्न विचारायला... AI शिकवू शकत नाही."
+   }
+  },
+  {
+   "id": "m07",
+   "scene": "danger",
+   "vo": {
+    "en": "The real danger isn't that machines will start thinking. It's that we will stop.",
+    "mr": "खरा धोका यंत्रं विचार करतील हा नाही. धोका हा आहे, की आपण विचार करणं सोडून देऊ."
+   }
+  },
+  {
+   "id": "m08",
+   "scene": "read",
+   "vo": {
+    "en": "Once, teachers taught India to read. Now, they must teach it to think.",
+    "mr": "एकेकाळी शिक्षकांनी देशाला लिहा-वाचायला शिकवलं. आता देशाला विचार करायला शिकवायचंय."
+   }
+  },
+  {
+   "id": "m09",
+   "scene": "future",
+   "vo": {
+    "en": "The future won't belong to those who have AI, but to those who know how to use it. And they're sitting in your classroom today.",
+    "mr": "उद्याचं जग AI असणाऱ्यांचं नाही, ते योग्य वापरणाऱ्यांचं असेल. आणि ती पिढी आज तुमच्या वर्गात बसलीय."
+   }
+  },
+  {
+   "id": "m10",
+   "scene": "brand",
+   "vo": {
+    "en": "AI Shiksha Mitra is AI built for Bharat's teachers. It does the paperwork. You do the teaching.",
+    "mr": "ए आय शिक्षामित्र. भारताच्या शिक्षकांसाठी बनवलेलं ए आय. कागदांचं काम ते करेल. खरं शिकवणं, तुम्ही करा."
+   }
+  },
+  {
+   "id": "m11",
+   "scene": "lead",
+   "vo": {
+    "en": "Learn it first. Then lead the change.",
+    "mr": "आधी स्वतः शिका. मग बदलाचं नेतृत्व करा."
+   }
+  },
+  {
+   "id": "m12",
+   "scene": "tagline",
+   "vo": {
+    "en": "AI gives answers. Teachers build minds.",
+    "mr": "AI उत्तरं देतं. शिक्षक माणसं घडवतात."
+   }
+  },
+  {
+   "id": "m13",
+   "scene": "cta",
+   "vo": {
+    "en": "Start today, at A.I. Shiksha Mitra dot com. And send this to one teacher who can lead this change.",
+    "mr": "आजच सुरुवात करा, ए आय शिक्षामित्र डॉट कॉमवर. आणि हा व्हिडिओ एका अशा शिक्षकाला पाठवा, जो बदल घडवू शकतो."
+   }
+  }
  ]
 }
