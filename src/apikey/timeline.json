@@ -1,0 +1,255 @@
+{
+ "fps": 30,
+ "en": {
+  "source": "final",
+  "voDir": "audio/apikey/en",
+  "total": 2069,
+  "steps": [
+   {
+    "id": "k01",
+    "start": 0,
+    "dur": 293,
+    "voAt": 24,
+    "voFrames": 260
+   },
+   {
+    "id": "k02",
+    "start": 293,
+    "dur": 260,
+    "voAt": 299,
+    "voFrames": 245
+   },
+   {
+    "id": "k03",
+    "start": 553,
+    "dur": 100,
+    "voAt": 559,
+    "voFrames": 85
+   },
+   {
+    "id": "k04",
+    "start": 653,
+    "dur": 224,
+    "voAt": 659,
+    "voFrames": 209
+   },
+   {
+    "id": "k05",
+    "start": 877,
+    "dur": 136,
+    "voAt": 883,
+    "voFrames": 121
+   },
+   {
+    "id": "k06",
+    "start": 1013,
+    "dur": 216,
+    "voAt": 1019,
+    "voFrames": 201
+   },
+   {
+    "id": "k07",
+    "start": 1229,
+    "dur": 120,
+    "voAt": 1235,
+    "voFrames": 82
+   },
+   {
+    "id": "k08",
+    "start": 1349,
+    "dur": 165,
+    "voAt": 1355,
+    "voFrames": 145
+   },
+   {
+    "id": "k09",
+    "start": 1514,
+    "dur": 170,
+    "voAt": 1520,
+    "voFrames": 155
+   },
+   {
+    "id": "k10",
+    "start": 1684,
+    "dur": 235,
+    "voAt": 1690,
+    "voFrames": 220
+   },
+   {
+    "id": "k11",
+    "start": 1919,
+    "dur": 150,
+    "voAt": 1933,
+    "voFrames": 120
+   }
+  ]
+ },
+ "hi": {
+  "source": "final",
+  "voDir": "audio/apikey/hi",
+  "total": 2286,
+  "steps": [
+   {
+    "id": "k01",
+    "start": 0,
+    "dur": 341,
+    "voAt": 24,
+    "voFrames": 308
+   },
+   {
+    "id": "k02",
+    "start": 341,
+    "dur": 300,
+    "voAt": 347,
+    "voFrames": 285
+   },
+   {
+    "id": "k03",
+    "start": 641,
+    "dur": 131,
+    "voAt": 647,
+    "voFrames": 116
+   },
+   {
+    "id": "k04",
+    "start": 772,
+    "dur": 230,
+    "voAt": 778,
+    "voFrames": 215
+   },
+   {
+    "id": "k05",
+    "start": 1002,
+    "dur": 162,
+    "voAt": 1008,
+    "voFrames": 147
+   },
+   {
+    "id": "k06",
+    "start": 1164,
+    "dur": 218,
+    "voAt": 1170,
+    "voFrames": 203
+   },
+   {
+    "id": "k07",
+    "start": 1382,
+    "dur": 120,
+    "voAt": 1388,
+    "voFrames": 105
+   },
+   {
+    "id": "k08",
+    "start": 1502,
+    "dur": 207,
+    "voAt": 1508,
+    "voFrames": 192
+   },
+   {
+    "id": "k09",
+    "start": 1709,
+    "dur": 174,
+    "voAt": 1715,
+    "voFrames": 159
+   },
+   {
+    "id": "k10",
+    "start": 1883,
+    "dur": 239,
+    "voAt": 1889,
+    "voFrames": 224
+   },
+   {
+    "id": "k11",
+    "start": 2122,
+    "dur": 164,
+    "voAt": 2136,
+    "voFrames": 141
+   }
+  ]
+ },
+ "mr": {
+  "source": "final",
+  "voDir": "audio/apikey/mr",
+  "total": 2277,
+  "steps": [
+   {
+    "id": "k01",
+    "start": 0,
+    "dur": 344,
+    "voAt": 24,
+    "voFrames": 311
+   },
+   {
+    "id": "k02",
+    "start": 344,
+    "dur": 298,
+    "voAt": 350,
+    "voFrames": 283
+   },
+   {
+    "id": "k03",
+    "start": 642,
+    "dur": 140,
+    "voAt": 648,
+    "voFrames": 125
+   },
+   {
+    "id": "k04",
+    "start": 782,
+    "dur": 237,
+    "voAt": 788,
+    "voFrames": 222
+   },
+   {
+    "id": "k05",
+    "start": 1019,
+    "dur": 158,
+    "voAt": 1025,
+    "voFrames": 143
+   },
+   {
+    "id": "k06",
+    "start": 1177,
+    "dur": 213,
+    "voAt": 1183,
+    "voFrames": 198
+   },
+   {
+    "id": "k07",
+    "start": 1390,
+    "dur": 120,
+    "voAt": 1396,
+    "voFrames": 103
+   },
+   {
+    "id": "k08",
+    "start": 1510,
+    "dur": 200,
+    "voAt": 1516,
+    "voFrames": 185
+   },
+   {
+    "id": "k09",
+    "start": 1710,
+    "dur": 168,
+    "voAt": 1716,
+    "voFrames": 153
+   },
+   {
+    "id": "k10",
+    "start": 1878,
+    "dur": 240,
+    "voAt": 1884,
+    "voFrames": 225
+   },
+   {
+    "id": "k11",
+    "start": 2118,
+    "dur": 159,
+    "voAt": 2132,
+    "voFrames": 136
+   }
+  ]
+ }
+}

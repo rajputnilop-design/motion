@@ -102,6 +102,20 @@ The narration used now is the ElevenLabs recordings in `voiceover/demo/<lang>-fu
 
 Sample content (students, marks, the register, the MahaTET question, chat drafts) is made up for the demo.
 
+## API key setup reels (9:16, English · Hindi · Marathi)
+
+A calm, step-by-step reel that explains why the free Google AI Studio key is needed and walks teachers through it:
+More → Your API key → the AI Studio link → sign in → Create API key → choose a project (or create one, name it and
+select it) → Create key → copy → back in the app, tick the confirmation, paste, Save. It explains that the key is
+free (no card, no payment), stays only on the device, and that Google's paid plan is optional. Compositions
+`ApiKey-EN`, `ApiKey-HI`, `ApiKey-MR`; files `out/apikey/AIShikshaMitra-APIKey-{English,Hindi,Marathi}.mp4` plus
+`-share.mp4` copies under 30 MB.
+
+The narration is the ElevenLabs recordings in `voiceover/apikey/<lang>-full.mp3`, cut into the 11 lines of
+[`src/apikey/script.json`](src/apikey/script.json) at the times in `voiceover/apikey/<lang>-cuts.json`. Build with
+`REMOTION_BROWSER=/path/to/chrome-headless-shell bash scripts/make_apikey.sh`. The app and AI Studio screens are
+rebuilt from screenshots; the account, key and project ID shown are sample values.
+
 ## Languages
 
 The composition takes a `voLang` prop (`en`, `mr`, `hi`); on-screen text stays the same. Marathi and Hindi lines are

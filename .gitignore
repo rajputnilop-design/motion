@@ -20,3 +20,9 @@ out/demo/raw-*.mp4
 out/demo/mix-*.wav
 out/demo/preview-*.mp4
 out/demo/*PREVIEW*.mp4
+out/apikey/raw-*.mp4
+out/apikey/mix-*.wav
+public/audio/apikey/en/
+public/audio/apikey/hi/
+public/audio/apikey/mr/
+public/audio/apikey/music-*.wav
