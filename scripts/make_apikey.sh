@@ -3,7 +3,8 @@
 #   python3 audio-tools/cut_lines.py voiceover/apikey/<lang>-full.mp3 voiceover/apikey/<lang>-cuts.json public/audio/apikey/<lang>
 #   python3 audio-tools/vo_timeline.py src/apikey/script.json public/audio/apikey src/apikey/timeline.json
 #   bash scripts/make_apikey.sh            # set REMOTION_BROWSER to use an existing headless Chrome
-# Rendered at 1.5x and downscaled (sharper UI text), soundtrack mastered to -14 LUFS, plus <30 MB share copies.
+# Rendered at 1.5x and downscaled (sharper UI text), soundtrack mastered to -14 LUFS. The files come out under
+# 30 MB, small enough for WhatsApp as they are.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 FF="ffmpeg -hide_banner -loglevel error -y"
@@ -32,12 +33,5 @@ for L in $LANGS; do
   $FF -i "$OUT/raw-$L.mp4" -i "$OUT/mix-$L.wav" -map 0:v -map 1:a -vf scale=1080:1920:flags=lanczos \
     -c:v libx264 -preset slow -crf 18 -pix_fmt yuv420p -profile:v high -af "$AF" -c:a aac -b:a 192k -shortest \
     -movflags +faststart "$OUT/AIShikshaMitra-APIKey-${NAME[$L]}.mp4"
-  secs=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$OUT/raw-$L.mp4")
-  kbps=$(python3 -c "print(int(27.5 * 8192 / $secs - 160))")
-  LOG=$(mktemp -d)/x264
-  $FF -i "$OUT/raw-$L.mp4" -vf scale=1080:1920:flags=lanczos -c:v libx264 -preset slow -b:v ${kbps}k -pass 1 -passlogfile "$LOG" -an -f mp4 /dev/null
-  $FF -i "$OUT/raw-$L.mp4" -i "$OUT/mix-$L.wav" -map 0:v -map 1:a -vf scale=1080:1920:flags=lanczos -c:v libx264 -preset slow \
-    -b:v ${kbps}k -pass 2 -passlogfile "$LOG" -pix_fmt yuv420p -af "$AF" -c:a aac -b:a 128k -shortest -movflags +faststart \
-    "$OUT/AIShikshaMitra-APIKey-${NAME[$L]}-share.mp4"
   ls -la "$OUT"/AIShikshaMitra-APIKey-"${NAME[$L]}"*.mp4
 done

@@ -108,8 +108,8 @@ A calm, step-by-step reel that explains why the free Google AI Studio key is nee
 More → Your API key → the AI Studio link → sign in → Create API key → choose a project (or create one, name it and
 select it) → Create key → copy → back in the app, tick the confirmation, paste, Save. It explains that the key is
 free (no card, no payment), stays only on the device, and that Google's paid plan is optional. Compositions
-`ApiKey-EN`, `ApiKey-HI`, `ApiKey-MR`; files `out/apikey/AIShikshaMitra-APIKey-{English,Hindi,Marathi}.mp4` plus
-`-share.mp4` copies under 30 MB.
+`ApiKey-EN`, `ApiKey-HI`, `ApiKey-MR`; files `out/apikey/AIShikshaMitra-APIKey-{English,Hindi,Marathi}.mp4`
+(1080×1920, under 30 MB each).
 
 The narration is the ElevenLabs recordings in `voiceover/apikey/<lang>-full.mp3`, cut into the 11 lines of
 [`src/apikey/script.json`](src/apikey/script.json) at the times in `voiceover/apikey/<lang>-cuts.json`. Build with
