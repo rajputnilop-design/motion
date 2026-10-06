@@ -3,8 +3,8 @@
 #   python3 audio-tools/cut_lines.py voiceover/manifesto/<lang>-full.mp3 voiceover/manifesto/<lang>-cuts.json public/audio/manifesto/<lang>
 #   python3 audio-tools/vo_timeline.py src/manifesto/script.json public/audio/manifesto src/manifesto/timeline.json
 #   LANGS=mr bash scripts/make_manifesto.sh     # set REMOTION_BROWSER to use an existing headless Chrome
-# Rendered at 1.5x and downscaled, soundtrack mastered to -14 LUFS. If the file comes out over 30 MB (WhatsApp's
-# limit for a shared video is higher, but 30 MB keeps it quick to forward), it is re-encoded in two passes to fit.
+# Rendered at 1.5x and downscaled, soundtrack mastered to -14 LUFS. A file over 30 MB is re-encoded in two passes
+# to about 27.5 MB, small enough to forward on WhatsApp quickly.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 FF="ffmpeg -hide_banner -loglevel error -y"

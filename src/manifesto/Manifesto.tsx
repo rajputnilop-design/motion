@@ -14,7 +14,7 @@ export const manifestoDefaults: {lang: Lang; music: boolean; voiceover: boolean}
 
 const CX = 540;
 const MUSIC = 0.5;
-const DUCKED = 0.3;
+const DUCKED = 0.2;
 const NO_CAPTION = new Set(['m07', 'm12']);
 const stepOf = (id: string) => STEPS.find((s) => s.id === id)!;
 
