@@ -26,3 +26,8 @@ public/audio/apikey/en/
 public/audio/apikey/hi/
 public/audio/apikey/mr/
 public/audio/apikey/music-*.wav
+out/manifesto/raw-*.mp4
+out/manifesto/mix-*.wav
+public/audio/manifesto/en/
+public/audio/manifesto/mr/
+public/audio/manifesto/music-*.wav

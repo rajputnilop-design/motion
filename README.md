@@ -116,6 +116,24 @@ The narration is the ElevenLabs recordings in `voiceover/apikey/<lang>-full.mp3`
 `REMOTION_BROWSER=/path/to/chrome-headless-shell bash scripts/make_apikey.sh`. The app and AI Studio screens are
 rebuilt from screenshots; the account, key and project ID shown are sample values.
 
+## Brand reel: "AI gives answers. Teachers build minds." (9:16, Marathi; English script ready)
+
+An 84-second manifesto for teachers, drawn as chalk on a blackboard: the machine (crisp neon cyan) can answer
+anything in three seconds and never switches off, but it can't tell when a child says "I understood" and didn't,
+can't see the girl on the last bench, and can't teach a child to question an answer. The danger is not that
+machines will think but that we will stop; teachers once taught India to read and now must teach it to think. Then
+the brand (it does the paperwork, you do the teaching), "learn it first, then lead the change", the tagline and a
+call to share it with one teacher. Composition `Manifesto-MR`; file
+`out/manifesto/AIShikshaMitra-TeachersBuildMinds-Marathi.mp4`.
+
+The copy-paste scripts are `voiceover/manifesto/{en,mr}.txt`. The Marathi narration is the ElevenLabs recording in
+`voiceover/manifesto/mr-full.mp3`, cut into the 13 lines of [`src/manifesto/script.json`](src/manifesto/script.json)
+at the times in `voiceover/manifesto/mr-cuts.json`; each cut also lists the phrase onsets (`beats`) inside the line,
+so drawings and captions land on the words. Build with `LANGS=mr bash scripts/make_manifesto.sh`. For English,
+add `voiceover/manifesto/en-full.mp3` and `en-cuts.json` and run with `LANGS="en mr"` (`Manifesto-EN` already
+previews on an estimated timeline). The board texture comes from `python3 scripts/make_board.py`; chalk sounds and
+the score from `audio-tools/generate_manifesto_audio.py`.
+
 ## Languages
 
 The composition takes a `voLang` prop (`en`, `mr`, `hi`); on-screen text stays the same. Marathi and Hindi lines are
@@ -166,9 +184,10 @@ src/
                        3D camera (Device), Logo bloom, phone, tap indicator, text animations
   illustrations/       Marathi question paper, lesson plan, water cycle, mini diagrams, slides, chalkboard
   reels/               the three 9:16 reel ads: mobile app shell, screens, reel frame and end card
+  manifesto/           the chalkboard brand reel: chalk drawing primitives, figures, scenes
 public/
   brand/               logo.png and its layers (logo-*.png) for the bloom, film-grain tile
-  fonts/               Playfair Display, Inter, Noto Sans Devanagari (SIL OFL)
+  fonts/               Playfair Display, Inter, Noto Sans/Serif Devanagari, Kalam (SIL OFL)
   audio/vo/            narration lines
   audio/sfx/           UI and transition sounds
   audio/music.wav      music bed

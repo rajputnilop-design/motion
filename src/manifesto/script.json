@@ -1,5 +1,6 @@
 {
  "fps": 30,
+ "cuts": "voiceover/manifesto/{lang}-cuts.json",
  "title": {
   "en": "Teachers build minds",
   "mr": "शिक्षक माणसं घडवतात"
@@ -11,7 +12,8 @@
    "vo": {
     "en": "Your students have found a new teacher.",
     "mr": "तुमच्या विद्यार्थ्यांना एक नवा शिक्षक मिळालाय."
-   }
+   },
+   "min": 3.5
   },
   {
    "id": "m02",
@@ -19,7 +21,8 @@
    "vo": {
     "en": "It answers anything in three seconds. Never gets tired. And there is no off switch.",
     "mr": "तीन सेकंदात उत्तर. कधीच थकत नाही. आणि त्याला बंद करायचं बटणच नाही."
-   }
+   },
+   "min": 5
   },
   {
    "id": "m03",
@@ -27,7 +30,8 @@
    "vo": {
     "en": "But there are things AI will never do.",
     "mr": "पण काही गोष्टी AI ला कधीच जमणार नाहीत."
-   }
+   },
+   "min": 2.6
   },
   {
    "id": "m04",
@@ -35,7 +39,8 @@
    "vo": {
     "en": "It can't tell when a child says, I understood... and didn't.",
     "mr": "मूल 'समजलं' म्हणतं... पण खरंच समजलंय का, हे AI ला कळत नाही."
-   }
+   },
+   "min": 4.5
   },
   {
    "id": "m05",
@@ -43,7 +48,8 @@
    "vo": {
     "en": "It can't see the girl on the last bench, who never raises her hand.",
     "mr": "शेवटच्या बाकावरची, कधीच हात वर न करणारी ती मुलगी... AI ला दिसत नाही."
-   }
+   },
+   "min": 7.3
   },
   {
    "id": "m06",
@@ -51,7 +57,8 @@
    "vo": {
     "en": "It can't teach a child to question an answer.",
     "mr": "आणि उत्तरावरच प्रश्न विचारायला... AI शिकवू शकत नाही."
-   }
+   },
+   "min": 3.5
   },
   {
    "id": "m07",
@@ -59,7 +66,8 @@
    "vo": {
     "en": "The real danger isn't that machines will start thinking. It's that we will stop.",
     "mr": "खरा धोका यंत्रं विचार करतील हा नाही. धोका हा आहे, की आपण विचार करणं सोडून देऊ."
-   }
+   },
+   "min": 6.5
   },
   {
    "id": "m08",
@@ -67,15 +75,17 @@
    "vo": {
     "en": "Once, teachers taught India to read. Now, they must teach it to think.",
     "mr": "एकेकाळी शिक्षकांनी देशाला लिहा-वाचायला शिकवलं. आता देशाला विचार करायला शिकवायचंय."
-   }
+   },
+   "min": 5.5
   },
   {
    "id": "m09",
    "scene": "future",
    "vo": {
     "en": "The future won't belong to those who have AI, but to those who know how to use it. And they're sitting in your classroom today.",
-    "mr": "उद्याचं जग AI असणाऱ्यांचं नाही, ते योग्य वापरणाऱ्यांचं असेल. आणि ती पिढी आज तुमच्या वर्गात बसलीय."
-   }
+    "mr": "उद्याचं जग AI असणाऱ्यांचं नाही, ते योग्य वापरणाऱ्यांचं असेल. आणि ती पिढी, आज तुमच्या वर्गात बसलीय."
+   },
+   "min": 6.5
   },
   {
    "id": "m10",
@@ -83,7 +93,8 @@
    "vo": {
     "en": "AI Shiksha Mitra is AI built for Bharat's teachers. It does the paperwork. You do the teaching.",
     "mr": "ए आय शिक्षामित्र. भारताच्या शिक्षकांसाठी बनवलेलं ए आय. कागदांचं काम ते करेल. खरं शिकवणं, तुम्ही करा."
-   }
+   },
+   "min": 7
   },
   {
    "id": "m11",
@@ -91,7 +102,8 @@
    "vo": {
     "en": "Learn it first. Then lead the change.",
     "mr": "आधी स्वतः शिका. मग बदलाचं नेतृत्व करा."
-   }
+   },
+   "min": 3.5
   },
   {
    "id": "m12",
@@ -99,15 +111,26 @@
    "vo": {
     "en": "AI gives answers. Teachers build minds.",
     "mr": "AI उत्तरं देतं. शिक्षक माणसं घडवतात."
-   }
+   },
+   "min": 5.0
   },
   {
    "id": "m13",
    "scene": "cta",
    "vo": {
     "en": "Start today, at A.I. Shiksha Mitra dot com. And send this to one teacher who can lead this change.",
-    "mr": "आजच सुरुवात करा, ए आय शिक्षामित्र डॉट कॉमवर. आणि हा व्हिडिओ एका अशा शिक्षकाला पाठवा, जो बदल घडवू शकतो."
-   }
+    "mr": "आजच सुरुवात करा, ए आय शिक्षामित्र डॉट कॉमवर. आणि हा व्हिडिओ, एका अशा शिक्षकाला पाठवा, जो बदल घडवू शकतो."
+   },
+   "min": 10.4
   }
- ]
+ ],
+ "lead": {
+  "m01": 20,
+  "m07": 22,
+  "m12": 18,
+  "m13": 8,
+  "m03": 10
+ },
+ "defaultLead": 6,
+ "tail": 10
 }
