@@ -1,0 +1,21 @@
+To use AI features in AI Shiksha Mitra, you need your own free API key. It's a one-time setup, and we'll do it together.
+
+An API key is simply your personal pass to Google's AI. It powers chat, tools and paper generation.
+
+And it's free. No card, no payment.
+
+In the app, tap More, then Your API key, and open the Google AI Studio link.
+
+Sign in with your Google account, and tap Create API key.
+
+Choose a project. If you don't have one, simply create a new project, give it any name, and select it.
+
+Tap Create key, and copy your key.
+
+Back in the app, tick the confirmation, paste the key, and tap Save.
+
+Your key stays only on your device, never synced to any cloud account.
+
+The free key is enough for everyday use. Need more later? You can choose Google's paid plan, anytime.
+
+That's it. Your AI features are ready. Happy teaching!
